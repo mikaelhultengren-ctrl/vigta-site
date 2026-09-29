@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "92VP2XS3AN.dk.exekio.fokusfilter"
+        ],
+        "components": [
+          {
+            "/": "/i/*",
+            "comment": "Invitationer til delte lister og Tværfaglig prioritering"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+/* vigta.app · én stilfil for hele hjemmesiden (spor H, L11).
+   Farver fra CLAUDE.md pkt. 17: teal som flade #0D9373, teal som tekst #0A6E56 (lys) / #3FD2AB (mørk).
+   Skriften er appens egen (Schibsted Grotesk) og ligger på domænet - ingen tredjepart. */
+
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  src: url('/fonts/schibsted-grotesk-latin-wght-normal.woff2') format('woff2');
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+:root {
+  --flade: #FFFFFF;
+  --flade-2: #F2F2F7;
+  --kort: #FFFFFF;
+  --skille: #E5E5EA;
+  --tekst: #0E1418;
+  --sekundaer: #5E6672;
+  --teal-flade: #0D9373;
+  --teal-tekst: #0A6E56;
+  --navy: #13305A;
+  --navy-2: #0B1A33;
+  --paa-navy: #FFFFFF;
+  --paa-navy-2: rgba(255, 255, 255, .78);
+  --radius: 18px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --flade: #0B141A;
+    --flade-2: #142025;
+    --kort: #1C2A30;
+    --skille: #2A3A41;
+    --tekst: #FFFFFF;
+    --sekundaer: #A9B1BA;
+    --teal-flade: #3FD2AB;
+    --teal-tekst: #3FD2AB;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--flade);
+  color: var(--tekst);
+  font-family: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+a { color: var(--teal-tekst); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--teal-flade); outline-offset: 3px; border-radius: 6px; }
+
+.spring { position: absolute; left: -9999px; top: 0; }
+.spring:focus { left: 16px; top: 12px; z-index: 10; background: var(--kort); padding: 8px 12px; border-radius: 8px; }
+
+.bredde { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+.smal { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+/* Top */
+.top { border-bottom: 1px solid var(--skille); background: var(--flade); }
+.top .bredde { display: flex; align-items: center; gap: 16px; min-height: 64px; flex-wrap: wrap; }
+.maerke { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 21px; color: var(--tekst); text-decoration: none; letter-spacing: -.01em; }
+.maerke img { width: 34px; height: 34px; border-radius: 8px; }
+.top nav { margin-left: auto; display: flex; gap: 4px 18px; flex-wrap: wrap; align-items: center; }
+.top nav a { color: var(--tekst); text-decoration: none; font-weight: 500; padding: 10px 0; }
+.top nav a:hover { text-decoration: underline; }
+.top nav a[aria-current="page"] { color: var(--teal-tekst); }
+.top nav .sprog { border: 1px solid var(--skille); border-radius: 999px; padding: 6px 12px; font-size: 15px; }
+
+/* Forsiden */
+.helt { background: linear-gradient(160deg, var(--navy), var(--navy-2)); color: var(--paa-navy); }
+.helt .bredde { display: grid; grid-template-columns: 1.3fr .7fr; gap: 40px; align-items: center; padding-top: 72px; padding-bottom: 72px; }
+.helt h1 { font-size: clamp(34px, 5.4vw, 56px); line-height: 1.08; margin: 0 0 18px; letter-spacing: -.02em; font-weight: 800; }
+.helt p { font-size: 20px; color: var(--paa-navy-2); margin: 0 0 28px; max-width: 34em; }
+.helt img { width: 100%; height: auto; aspect-ratio: 1; max-width: 280px; justify-self: center; border-radius: 22%; box-shadow: 0 20px 60px rgba(0, 0, 0, .35); }
+.knapper { display: flex; gap: 12px; flex-wrap: wrap; }
+.knap { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+.knap-fyldt { background: #0A6E56; color: #FFFFFF; }
+.knap-kant { border: 1.5px solid rgba(255, 255, 255, .6); color: #FFFFFF; }
+.snart { display: block; margin-top: 14px; font-size: 15px; color: var(--paa-navy-2); }
+
+.sektion { padding: 64px 0; }
+.sektion-graa { background: var(--flade-2); }
+.sektion h2 { font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; margin: 0 0 12px; letter-spacing: -.01em; }
+.ingress { color: var(--sekundaer); font-size: 19px; margin: 0 0 32px; max-width: 40em; }
+
+.gitter { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.gitter-4 { grid-template-columns: repeat(4, 1fr); }
+.kort { background: var(--kort); border: 1px solid var(--skille); border-radius: var(--radius); padding: 22px; }
+.kort h3 { margin: 0 0 8px; font-size: 20px; }
+.kort p { margin: 0; color: var(--sekundaer); }
+.prik { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+
+/* Tekstsider */
+.side { padding-top: 48px; padding-bottom: 72px; }
+.side h1 { font-size: clamp(30px, 4.4vw, 42px); line-height: 1.1; margin: 0 0 8px; letter-spacing: -.02em; }
+.side .meta { color: var(--sekundaer); margin: 0 0 32px; }
+.side h2 { font-size: 24px; margin: 40px 0 10px; line-height: 1.2; }
+.side h3 { font-size: 19px; margin: 28px 0 8px; }
+.side li { margin: 6px 0; }
+.side table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 16px; display: block; overflow-x: auto; }
+.side th, .side td { border: 1px solid var(--skille); padding: 8px 10px; text-align: left; vertical-align: top; }
+.side th { background: var(--flade-2); }
+.side blockquote { margin: 16px 0; padding: 12px 16px; border-left: 4px solid var(--teal-flade); background: var(--flade-2); border-radius: 0 10px 10px 0; }
+.side hr { border: 0; border-top: 1px solid var(--skille); margin: 32px 0; }
+.boks { background: var(--flade-2); border-radius: var(--radius); padding: 20px 22px; margin: 24px 0; }
+.boks p:first-child { margin-top: 0; }
+.boks p:last-child { margin-bottom: 0; }
+.trin { padding-left: 1.3em; }
+.trin li { margin: 10px 0; }
+
+/* Bund */
+.bund { border-top: 1px solid var(--skille); padding: 28px 0 40px; color: var(--sekundaer); font-size: 15px; }
+.bund .bredde { display: flex; gap: 10px 24px; flex-wrap: wrap; align-items: center; }
+.bund a { color: var(--sekundaer); }
+.bund .hoejre { margin-left: auto; }
+
+@media (max-width: 820px) {
+  .helt .bredde { grid-template-columns: 1fr; padding-top: 48px; padding-bottom: 48px; }
+  .helt img { max-width: 160px; justify-self: start; grid-row: 1; }
+  .gitter, .gitter-4 { grid-template-columns: 1fr; }
+  .top nav { margin-left: 0; width: 100%; padding-bottom: 8px; }
+  .bund .hoejre { margin-left: 0; }
+}
+.side code { overflow-wrap: anywhere; }
