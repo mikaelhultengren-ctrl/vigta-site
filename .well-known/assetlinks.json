@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dk.exekio.vigta",
+      "sha256_cert_fingerprints": ["8F:95:19:86:80:91:AA:D6:10:01:7A:2A:59:79:E4:A5:58:DC:9B:5B:B4:46:D2:30:1D:E8:DE:1F:45:98:92:CA"]
+    }
+  }
+]
