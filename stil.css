@@ -126,5 +126,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--teal-flade); ou
   .gitter, .gitter-4 { grid-template-columns: 1fr; }
   .top nav { margin-left: 0; width: 100%; padding-bottom: 8px; }
   .bund .hoejre { margin-left: 0; }
+  .side table { font-size: 14px; }
+  .side th, .side td { padding: 6px; }
 }
 .side code { overflow-wrap: anywhere; }
