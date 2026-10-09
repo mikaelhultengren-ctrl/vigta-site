@@ -8,7 +8,7 @@
         "components": [
           {
             "/": "/i/*",
-            "comment": "Invitationer til delte lister og Tværfaglig prioritering"
+            "comment": "Invitationer til delte lister og lister på tværs"
           }
         ]
       }
