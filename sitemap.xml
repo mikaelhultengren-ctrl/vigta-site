@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://vigta.app/</loc></url>
+  <url><loc>https://vigta.app/da/</loc></url>
   <url><loc>https://vigta.app/en/</loc></url>
-  <url><loc>https://vigta.app/support/</loc></url>
+  <url><loc>https://vigta.app/de/</loc></url>
+  <url><loc>https://vigta.app/sv/</loc></url>
+  <url><loc>https://vigta.app/nb/</loc></url>
+  <url><loc>https://vigta.app/fi/</loc></url>
+  <url><loc>https://vigta.app/fr/</loc></url>
+  <url><loc>https://vigta.app/es/</loc></url>
+  <url><loc>https://vigta.app/it/</loc></url>
+  <url><loc>https://vigta.app/ja/</loc></url>
+  <url><loc>https://vigta.app/da/support/</loc></url>
   <url><loc>https://vigta.app/en/support/</loc></url>
-  <url><loc>https://vigta.app/privatliv/</loc></url>
-  <url><loc>https://vigta.app/privacy/</loc></url>
-  <url><loc>https://vigta.app/vilkaar/</loc></url>
-  <url><loc>https://vigta.app/terms/</loc></url>
-  <url><loc>https://vigta.app/slet-konto/</loc></url>
-  <url><loc>https://vigta.app/delete-account/</loc></url>
-  <url><loc>https://vigta.app/web/</loc></url>
+  <url><loc>https://vigta.app/de/support/</loc></url>
+  <url><loc>https://vigta.app/sv/support/</loc></url>
+  <url><loc>https://vigta.app/nb/support/</loc></url>
+  <url><loc>https://vigta.app/fi/support/</loc></url>
+  <url><loc>https://vigta.app/fr/support/</loc></url>
+  <url><loc>https://vigta.app/es/support/</loc></url>
+  <url><loc>https://vigta.app/it/support/</loc></url>
+  <url><loc>https://vigta.app/ja/support/</loc></url>
+  <url><loc>https://vigta.app/da/privatliv/</loc></url>
+  <url><loc>https://vigta.app/en/privacy/</loc></url>
+  <url><loc>https://vigta.app/de/privacy/</loc></url>
+  <url><loc>https://vigta.app/sv/privacy/</loc></url>
+  <url><loc>https://vigta.app/nb/privacy/</loc></url>
+  <url><loc>https://vigta.app/fi/privacy/</loc></url>
+  <url><loc>https://vigta.app/fr/privacy/</loc></url>
+  <url><loc>https://vigta.app/es/privacy/</loc></url>
+  <url><loc>https://vigta.app/it/privacy/</loc></url>
+  <url><loc>https://vigta.app/ja/privacy/</loc></url>
+  <url><loc>https://vigta.app/da/vilkaar/</loc></url>
+  <url><loc>https://vigta.app/en/terms/</loc></url>
+  <url><loc>https://vigta.app/de/terms/</loc></url>
+  <url><loc>https://vigta.app/sv/terms/</loc></url>
+  <url><loc>https://vigta.app/nb/terms/</loc></url>
+  <url><loc>https://vigta.app/fi/terms/</loc></url>
+  <url><loc>https://vigta.app/fr/terms/</loc></url>
+  <url><loc>https://vigta.app/es/terms/</loc></url>
+  <url><loc>https://vigta.app/it/terms/</loc></url>
+  <url><loc>https://vigta.app/ja/terms/</loc></url>
+  <url><loc>https://vigta.app/da/slet-konto/</loc></url>
+  <url><loc>https://vigta.app/en/delete-account/</loc></url>
+  <url><loc>https://vigta.app/de/delete-account/</loc></url>
+  <url><loc>https://vigta.app/sv/delete-account/</loc></url>
+  <url><loc>https://vigta.app/nb/delete-account/</loc></url>
+  <url><loc>https://vigta.app/fi/delete-account/</loc></url>
+  <url><loc>https://vigta.app/fr/delete-account/</loc></url>
+  <url><loc>https://vigta.app/es/delete-account/</loc></url>
+  <url><loc>https://vigta.app/it/delete-account/</loc></url>
+  <url><loc>https://vigta.app/ja/delete-account/</loc></url>
+  <url><loc>https://vigta.app/da/web/</loc></url>
   <url><loc>https://vigta.app/en/web/</loc></url>
+  <url><loc>https://vigta.app/de/web/</loc></url>
+  <url><loc>https://vigta.app/sv/web/</loc></url>
+  <url><loc>https://vigta.app/nb/web/</loc></url>
+  <url><loc>https://vigta.app/fi/web/</loc></url>
+  <url><loc>https://vigta.app/fr/web/</loc></url>
+  <url><loc>https://vigta.app/es/web/</loc></url>
+  <url><loc>https://vigta.app/it/web/</loc></url>
+  <url><loc>https://vigta.app/ja/web/</loc></url>
 </urlset>

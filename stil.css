@@ -70,7 +70,35 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--teal-flade); ou
 .top nav a { color: var(--tekst); text-decoration: none; font-weight: 500; padding: 10px 0; }
 .top nav a:hover { text-decoration: underline; }
 .top nav a[aria-current="page"] { color: var(--teal-tekst); }
-.top nav .sprog { border: 1px solid var(--skille); border-radius: 999px; padding: 6px 12px; font-size: 15px; }
+.visuelt-skjult { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Sprogvælgeren (ti sprog, Mikael 09.10.26): <details>, så den virker uden JavaScript. */
+.sprogvalg { position: relative; }
+.sprogvalg summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; border: 1px solid var(--skille); border-radius: 999px; padding: 0 14px; font-size: 15px; font-weight: 500; white-space: nowrap; }
+.sprogvalg summary::-webkit-details-marker { display: none; }
+.sprogvalg summary::after { content: ''; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); margin-left: 2px; }
+.sprogvalg[open] summary::after { transform: translateY(1px) rotate(-135deg); }
+.sprogvalg summary:focus-visible { outline: 3px solid var(--teal-flade); outline-offset: 3px; }
+.globus { width: 16px; height: 16px; border: 1.5px solid currentColor; border-radius: 50%; position: relative; flex: none; }
+.globus::before { content: ''; position: absolute; inset: -1.5px 3.5px; border: 1.5px solid currentColor; border-radius: 50%; }
+.globus::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px solid currentColor; }
+.sprogvalg ul { position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; margin: 0; padding: 6px; list-style: none; min-width: 180px; background: var(--kort); border: 1px solid var(--skille); border-radius: 14px; box-shadow: 0 12px 32px rgba(0, 0, 0, .14); }
+.sprogvalg li a { display: block; padding: 10px 12px; border-radius: 8px; color: var(--tekst); text-decoration: none; }
+.sprogvalg li a:hover { background: var(--flade-2); text-decoration: none; }
+.sprogvalg li a[aria-current] { color: var(--teal-tekst); font-weight: 700; }
+
+/* Roden: listen, hvis browseren ikke sender videre */
+.sprogliste { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.sprogliste a { display: block; padding: 12px 14px; border: 1px solid var(--skille); border-radius: 12px; text-decoration: none; }
+
+/* Lange ord (tysk, finsk) må deles i stedet for at løbe ud over kanten */
+h1, h2, h3, .knap { overflow-wrap: break-word; hyphens: auto; }
+.forrang { color: var(--sekundaer); font-style: italic; margin: 0 0 16px; }
+
+/* Japansk: systemets japanske skrift, og linjeskift efter japanske regler */
+:lang(ja) body, body:lang(ja) { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', 'Noto Sans CJK JP', Meiryo, sans-serif; line-break: strict; }
+:lang(ja) h1, :lang(ja) h2, :lang(ja) h3 { letter-spacing: 0; word-break: auto-phrase; }
+:lang(ja) .bund, :lang(ja) .snart { word-break: auto-phrase; }
 
 /* Forsiden */
 .helt { background: linear-gradient(160deg, var(--navy), var(--navy-2)); color: var(--paa-navy); }
@@ -79,7 +107,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--teal-flade); ou
 .helt p { font-size: 20px; color: var(--paa-navy-2); margin: 0 0 28px; max-width: 34em; }
 .helt img { width: 100%; height: auto; aspect-ratio: 1; max-width: 280px; justify-self: center; border-radius: 22%; box-shadow: 0 20px 60px rgba(0, 0, 0, .35); }
 .knapper { display: flex; gap: 12px; flex-wrap: wrap; }
-.knap { display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+.knap { display: inline-flex; align-items: center; min-height: 48px; padding: 10px 22px; line-height: 1.25; border-radius: 999px; font-weight: 700; text-decoration: none; }
 .knap-fyldt { background: #0A6E56; color: #FFFFFF; }
 .knap-kant { border: 1.5px solid rgba(255, 255, 255, .6); color: #FFFFFF; }
 .snart { display: block; margin-top: 14px; font-size: 15px; color: var(--paa-navy-2); }
@@ -124,7 +152,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--teal-flade); ou
   .helt .bredde { grid-template-columns: 1fr; padding-top: 48px; padding-bottom: 48px; }
   .helt img { max-width: 160px; justify-self: start; grid-row: 1; }
   .gitter, .gitter-4 { grid-template-columns: 1fr; }
-  .top nav { margin-left: 0; width: 100%; padding-bottom: 8px; }
+  /* Telefon: mærke og sprogvælger på første linje, menuen på næste - så vælgeren aldrig hopper ned alene. */
+  .top .bredde { gap: 0 16px; padding-top: 8px; }
+  .sprogvalg { order: 2; margin-left: auto; }
+  .top nav { order: 3; margin-left: 0; width: 100%; padding-bottom: 8px; }
   .bund .hoejre { margin-left: 0; }
   .side table { font-size: 14px; }
   .side th, .side td { padding: 6px; }
