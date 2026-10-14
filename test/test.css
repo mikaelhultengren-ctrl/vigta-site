@@ -1,0 +1,116 @@
+/* vigta.app/test · testskemaerne (spor H, 14.10.26). Bygger på /stil.css (skrift, flader, mørkt tema).
+   Teal efter prompten: #0A7A5E som tekst på lys flade, #0D9373 som fyld, #26B78F i mørkt tema. #0D9373 bruges aldrig
+   som tekst på hvid. MÅLT (axe 14.10): hvid tekst på #0D9373 er under 4,5:1, og knappernes 17 px fed er ikke "stor
+   tekst" - derfor har flader MED TEKST (knapper, det valgte SUS-tal) #0A7A5E i lyst tema; #0D9373 er kun kant, fokus
+   og afkrydsning. WCAG 2.2 AA vinder over farvevalget. Mobil først: 360 px uden vandret rul, ét spørgsmål pr. kort, trykflader mindst 44 × 44 px. */
+.test {
+  font-size: 1.0625rem;   /* 17 px som resten af sitet, men i rem, så browserens tekststørrelse (200 %) slår igennem */
+  --t-tekst: #0A7A5E;
+  --t-fyld: #0D9373;
+  --t-fyld-tekst: #0A7A5E;   /* flade, der bærer hvid tekst */
+  --t-paa-fyld: #FFFFFF;
+  --t-fare: #B3272C;
+  --t-ramme: #8A9099;
+}
+@media (prefers-color-scheme: dark) {
+  .test { --t-tekst: #26B78F; --t-fyld: #26B78F; --t-fyld-tekst: #26B78F; --t-paa-fyld: #0B141A; --t-fare: #FF6961; --t-ramme: #6B7680; }
+}
+.test a { color: var(--t-tekst); }
+.test .top .bredde { min-height: 64px; }
+.test main { padding: 24px 0 64px; }
+.test .smal { max-width: 640px; }
+.test h1.hej { font-size: clamp(1.75rem, 7vw, 2.5rem); line-height: 1.15; margin: 8px 0 4px; overflow-wrap: anywhere; }
+.test .ingress { color: var(--sekundaer); margin: 0 0 20px; }
+.test .skematitel { font-size: 1.5rem; margin: 16px 0 8px; }
+.test .fremdrift { font-weight: 700; margin: 12px 0 4px; color: var(--t-tekst); }
+.test .tilbage { margin: 4px 0 8px; }
+.test .meta { color: var(--sekundaer); }
+.test .stor { font-size: 1.1875rem; }
+
+.test .kort { background: var(--kort); border: 1px solid var(--skille); border-radius: 18px; padding: 18px; margin: 14px 0; min-width: 0; }
+.test .kort > *:first-child { margin-top: 0; }
+.test .kort > *:last-child { margin-bottom: 0; }
+
+/* Skemalisten */
+.test .skemaliste { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.test .skemalink { display: flex; flex-direction: column; gap: 2px; min-height: 64px; justify-content: center; padding: 14px 18px; border: 1px solid var(--skille); border-radius: 18px; background: var(--kort); text-decoration: none; color: var(--tekst); }
+.test .skemanavn { font-weight: 700; font-size: 1.1875rem; color: var(--t-tekst); }
+.test .skemastatus { color: var(--sekundaer); font-size: 0.9375rem; }
+.test .skemastatus.udfyldt { color: var(--t-tekst); font-weight: 600; }
+
+/* Felter */
+.test fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.test .kort.sus, .test fieldset.kort { border: 1px solid var(--skille); padding: 18px; }
+.test legend, .test .felt > label { display: block; font-weight: 700; font-size: 1.125rem; line-height: 1.35; margin: 0 0 10px; padding: 0; overflow-wrap: anywhere; }
+.test legend .hjaelp, .test .hjaelp { display: block; font-weight: 400; font-size: 0.9375rem; color: var(--sekundaer); margin-top: 2px; }
+.test .valgfri { font-weight: 400; color: var(--sekundaer); }
+.test input[type="text"], .test textarea {
+  width: 100%; font: inherit; font-size: 1.0625rem; color: var(--tekst); background: var(--flade);
+  border: 1.5px solid var(--t-ramme); border-radius: 12px; padding: 10px 12px; min-height: 48px;
+}
+.test textarea { min-height: 96px; resize: vertical; }
+.test input[type="text"]:focus-visible, .test textarea:focus-visible { outline: 3px solid var(--t-fyld); outline-offset: 2px; }
+.test [aria-invalid="true"] { border-color: var(--t-fare) !important; }
+.test .felt + .felt { margin-top: 16px; }
+.test .felt.hvorfor { margin-top: 16px; }
+.test .felt.hvorfor > label { font-weight: 600; font-size: 1rem; }
+.test .taeller, .test .afskaaret { font-size: 0.875rem; color: var(--sekundaer); margin: 6px 0 0; }
+.test .afskaaret { color: var(--t-fare); }
+.test .feltfejl { color: var(--t-fare); font-weight: 600; margin: 0 0 8px; }
+
+/* Valg (radio og afkrydsning) - hele rækken er trykflade */
+.test .valgliste { display: flex; flex-direction: column; gap: 8px; }
+.test .valgknap { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 8px 12px; border: 1.5px solid var(--skille); border-radius: 12px; cursor: pointer; overflow-wrap: anywhere; }
+.test .valgknap input { width: 24px; height: 24px; flex: none; margin: 0; accent-color: var(--t-fyld); }
+.test .valgknap:has(input:checked) { border-color: var(--t-fyld); background: color-mix(in srgb, var(--t-fyld) 10%, transparent); }
+.test .valgknap:has(input:focus-visible) { outline: 3px solid var(--t-fyld); outline-offset: 2px; }
+.test .kryds { margin-top: 16px; }
+
+/* SUS: fem runde valg i en række, enderne som tekst under */
+.test .sus legend { font-weight: 600; }
+.test .sus .nr { color: var(--sekundaer); }
+.test .skala { display: grid; grid-template-columns: repeat(5, minmax(44px, 1fr)); gap: 6px; }
+.test .skalaknap { position: relative; display: flex; align-items: center; justify-content: center; min-height: 48px; cursor: pointer; }
+.test .skalaknap input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.test .skalaknap .tal { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--t-ramme); font-weight: 700; font-size: 1.125rem; color: var(--tekst); background: var(--flade); }
+.test .skalaknap input:checked + .tal { background: var(--t-fyld-tekst); border-color: var(--t-fyld-tekst); color: var(--t-paa-fyld); }
+.test .skalaknap input:focus-visible + .tal { outline: 3px solid var(--t-fyld); outline-offset: 3px; }
+.test .ender { display: flex; justify-content: space-between; gap: 12px; font-size: 0.875rem; color: var(--sekundaer); margin-top: 6px; }
+
+/* Knapper */
+.test .handling { margin: 20px 0 8px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.test .knap { font: inherit; font-weight: 700; min-height: 48px; padding: 10px 22px; border-radius: 999px; cursor: pointer; border: 0; }
+.test .knap-fyldt { background: var(--t-fyld-tekst); color: var(--t-paa-fyld); }
+.test .knap-kant { background: transparent; border: 1.5px solid var(--t-ramme); color: var(--tekst); }
+.test .knap-fare { background: var(--t-fare); color: #FFFFFF; }
+@media (prefers-color-scheme: dark) { .test .knap-fare { color: #0B141A; } }
+.test .knap:disabled { opacity: .5; cursor: not-allowed; }
+.test .knap:focus-visible, .test .linkknap:focus-visible { outline: 3px solid var(--t-fyld); outline-offset: 3px; }
+.test .linkknap { font: inherit; background: none; border: 0; padding: 10px 0; min-height: 44px; color: var(--t-tekst); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; text-align: left; }
+.test .knapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+
+/* Fejl, kvittering, træk tilbage */
+.test .oversigt { border: 2px solid var(--t-fare); border-radius: 14px; padding: 14px 16px; margin: 12px 0; }
+.test .oversigt p { margin: 0 0 6px; font-weight: 700; }
+.test .oversigt ul { margin: 0; padding-left: 1.2em; }
+.test .oversigt:focus { outline: 3px solid var(--t-fyld); outline-offset: 2px; }
+.test .kort-kvit { border-color: var(--t-fyld); border-width: 2px; }
+.test .kvit { font-size: 1.1875rem; margin: 0 0 6px; }
+.test .traek { margin-top: 32px; border-top: 1px solid var(--skille); padding-top: 12px; }
+.test .bekraeft { border-color: var(--t-fare); }
+.test .samtykke h2 { font-size: 1.3125rem; margin: 0 0 8px; }
+.test .samtykke h3 { font-size: 1.0625rem; margin: 16px 0 4px; }
+.test .samtykke ul { padding-left: 1.2em; margin: 4px 0; }
+.test .samtykke li { margin: 4px 0; }
+
+/* 200 % tekst ved 320 px (målt 14.10): lange danske ord ("skærmbilleder", "privatlivspolitik") deles i stedet for at
+   skubbe siden ud til siden. */
+.test main { overflow-wrap: anywhere; }   /* kun når et ord ikke kan være der - ingen orddeling ellers (set 14.10) */
+
+/* Set på skærmbillederne 14.10: sitets `.kort p` (forsidens kort) gør brødteksten grå - samtykket er juridisk tekst og
+   står i normal farve. Og et fieldsets legend sidder som standard OPPE I kanten; i kortene står den inde i kortet. */
+.test .kort p, .test .kort li { color: var(--tekst); }
+.test .kort p.meta, .test .kort .hjaelp, .test .kort .taeller { color: var(--sekundaer); }
+.test fieldset.kort > legend { float: left; width: 100%; }
+.test fieldset.kort > legend + * { clear: both; }
+.test h1, .test h2, .test h3 { hyphens: manual; }
