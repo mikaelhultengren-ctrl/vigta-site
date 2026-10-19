@@ -11,7 +11,7 @@ window.VIGTA_TEST_TEKSTER = window.VIGTA_TEST_TEKSTER || {};
 window.VIGTA_TEST_TEKSTER.da = {
   samtykke: {
     titel: 'Samtykke til at deltage i testen af Vigta',
-    indledning: 'Testen køres af Exekio (CVR 46387376) ved Mikael Hultengren. Formålet er at forbedre Vigta før lanceringen 1. december 2026.',
+    indledning: 'Testen køres af Exekio (CVR 46387376) ved Mikael Hultengren. Formålet er at forbedre Vigta før lanceringen 8. december 2026.',
     afsnit: [
       { titel: 'Det indsamler vi', punkter: [
         'Dit navn og din e-mail, så vi kan sende dig appen og skemaerne',
