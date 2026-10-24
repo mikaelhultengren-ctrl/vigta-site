@@ -18,7 +18,7 @@
       if (state.indexOf('app.') === 0) {
         location.replace("dk.exekio.fokusfilter:/import-retur" + soeg + frag);
       } else if (window.opener) {
-        window.opener.postMessage({ type: 'vigta-import-retur', url: fuld }, "https://vigta.app");
+        window.opener.postMessage({ type: "vigta-import-retur", url: fuld }, "https://vigta.app");
         window.close();
       }
       var linjer = {"da":"Du sendes tilbage til Vigta …","en":"Taking you back to Vigta …","de":"Du wirst zurück zu Vigta geleitet …","sv":"Du skickas tillbaka till Vigta …","nb":"Du sendes tilbake til Vigta …","fi":"Sinut ohjataan takaisin Vigtaan …","fr":"Retour vers Vigta …","es":"Te llevamos de vuelta a Vigta …","it":"Ti riportiamo a Vigta …","ja":"Vigtaに戻ります…"};

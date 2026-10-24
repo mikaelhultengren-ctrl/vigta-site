@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Vigta</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/stil.css">
+  <script>
+    (function () {
+      var soeg = location.search, frag = location.hash;
+      var p = new URLSearchParams(soeg);
+      var state = p.get('state') || new URLSearchParams(frag.replace(/^#/, '')).get('state') || '';
+      var fuld = location.href;
+      history.replaceState(null, '', location.pathname);
+      if (state.indexOf('app.') === 0) {
+        location.replace("dk.exekio.fokusfilter:/kalender-retur" + soeg + frag);
+      } else if (window.opener) {
+        window.opener.postMessage({ type: "vigta-kalender-retur", url: fuld }, "https://vigta.app");
+        window.close();
+      }
+      var linjer = {"da":"Du sendes tilbage til Vigta …","en":"Taking you back to Vigta …","de":"Du wirst zurück zu Vigta geleitet …","sv":"Du skickas tillbaka till Vigta …","nb":"Du sendes tilbake til Vigta …","fi":"Sinut ohjataan takaisin Vigtaan …","fr":"Retour vers Vigta …","es":"Te llevamos de vuelta a Vigta …","it":"Ti riportiamo a Vigta …","ja":"Vigtaに戻ります…"};
+      var valgt = 'en';
+      var oensker = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < oensker.length; i++) {
+        var k = String(oensker[i]).toLowerCase().split('-')[0];
+        if (k === 'no' || k === 'nn') k = 'nb';
+        if (linjer[k]) { valgt = k; break; }
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+        document.documentElement.lang = valgt;
+        document.getElementById('linje').textContent = linjer[valgt];
+      });
+    })();
+  </script>
+</head>
+<body>
+  <main class="side smal">
+    <p id="linje" class="meta">Taking you back to Vigta …</p>
+  </main>
+</body>
+</html>
