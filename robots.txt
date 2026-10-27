@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /test/
+Disallow: /web-test/
 Sitemap: https://vigta.app/sitemap.xml
