@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Vigta · status</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:-apple-system,system-ui,sans-serif;max-width:640px;margin:2rem auto;padding:0 1rem;background:#111;color:#eee}
+  h1{font-size:1.3rem} h2{font-size:1.05rem;margin-top:2rem;border-bottom:1px solid #333;padding-bottom:.3rem}
+  .opdateret{color:#888;font-size:.85rem}
+  #gate{position:fixed;inset:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+  #gate input{font-size:1.1rem;padding:.5rem;border-radius:6px;border:1px solid #444;background:#222;color:#eee}
+  #gate button{font-size:1rem;padding:.5rem 1rem;border-radius:6px;border:0;background:#2a6;color:#fff}
+  #fejl{color:#e66;font-size:.9rem;min-height:1.2em}
+  #indhold{display:none}
+</style>
+</head>
+<body>
+<div id="gate">
+  <div>Indtast kode</div>
+  <input id="kodefelt" type="password" autocomplete="off">
+  <button onclick="tjekKode()">Vis status</button>
+  <div id="fejl"></div>
+</div>
+<div id="indhold">
+<h1>Vigta · status</h1>
+<p class="opdateret">Opdateret 04.11.2026 kl. 14.47</p>
+<h2>Kører nu</h2>
+<p>- design-484-r: build 484: hold/swipe kort, firkant Dagsorden, farvepar, blålig top væk (startet 04.11 kl. 00.00)<br>- g-484: build 484: C4 hold/swipe aftaler, K171 firkant, K172 farvepar, 484.1 blålig top (startet 04.11 kl. 06.54)<br>- g-486: build 486: K114 "+n"-mærke I dag-boks + K112 "Stadig aktuelle?"-boks (startet 04.11 kl. 13.40)<br>- infra-4: statusside online, upload-startbesked, automatisk upload, ønskeregister, hændelseslog (R §2-3) (startet 04.11 kl. 14.25)<br>- Build brugt: 897 % af budgettet.<br></p>
+<h2>Færdigt i dag</h2>
+<p>- Ingen builds færdige i dag endnu.<br></p>
+<h2>Tidligere builds</h2>
+<p>- Ingen tidligere builds registreret endnu.<br></p>
+</div>
+<script>
+const rigtig = "c53be522680409aa133a822acfbb3aaf456c25fba6013ebe9409c4ecef599fc7";
+async function tjekKode(){
+  const v = document.getElementById('kodefelt').value;
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+  const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  if (hex === rigtig){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('indhold').style.display='block';
+    sessionStorage.setItem('vigta-ok','1');
+  } else {
+    document.getElementById('fejl').textContent = 'Forkert kode.';
+  }
+}
+if (sessionStorage.getItem('vigta-ok')==='1'){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('indhold').style.display='block';
+}
+</script>
+</body>
+</html>
