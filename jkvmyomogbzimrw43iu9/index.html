@@ -25,11 +25,11 @@
 </div>
 <div id="indhold">
 <h1>Vigta · status</h1>
-<p class="opdateret">Opdateret 04.11.2026 kl. 16.34</p>
+<p class="opdateret">Opdateret 04.11.2026 kl. 16.38</p>
 <h2>Kører nu</h2>
 <p>- Rendergrouped invarianter + fransk typografi (startet 04.11 kl. 15.40)<br>- Delt liste ude af synk + tina væk i personer (datafejl + regression) (startet 04.11 kl. 16.20)<br></p>
 <h2>Forventet</h2>
-<p>- Build 487: Send til anden, vedhæftninger, GDPR/Apple (nat) - forventet på TestFlight ca. 04.11 kl. 17.53<br>- Build 488: opstartsanimation/Indtal/Gør til opgaver/tabte punkter - forventet på TestFlight ca. 04.11 kl. 18.50<br>- Build 489: Påmindelser→Vigta/faner/venstrehånd/kalender-huller/sproggennemsyn - forventet på TestFlight ca. 04.11 kl. 19.47<br>opdateret 16:34 · +1 min siden sidste skøn<br></p>
+<p>- Build 487: Send til anden, vedhæftninger, GDPR/Apple (nat) - forventet på TestFlight ca. 04.11 kl. 17.57<br>- Build 488: opstartsanimation/Indtal/Gør til opgaver/tabte punkter - forventet på TestFlight ca. 04.11 kl. 18.54<br>- Build 489: Påmindelser→Vigta/faner/venstrehånd/kalender-huller/sproggennemsyn - forventet på TestFlight ca. 04.11 kl. 19.51<br>opdateret 16:38 · +5 min siden sidste skøn<br></p>
 <h2>Færdigt i dag</h2>
 <p>- Ingen builds færdige i dag endnu.<br></p>
 <h2>Tidligere builds</h2>
@@ -40,23 +40,47 @@
 <p>- Falsk STOP-forbrug (PL fjernede den 14.09)<br>- Halv udnyttelse: pas-kø havde kun -filer, ingen gyldige -poster (vagt scanner )<br>- Pas døde; for fik rød krog-fejl to gange (gentaget)<br></p>
 </div>
 <script>
-const rigtig = "c53be522680409aa133a822acfbb3aaf456c25fba6013ebe9409c4ecef599fc7";
-async function tjekKode(){
-  const v = document.getElementById('kodefelt').value;
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
-  const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  if (hex === rigtig){
-    document.getElementById('gate').style.display='none';
-    document.getElementById('indhold').style.display='block';
-    sessionStorage.setItem('vigta-ok','1');
-  } else {
-    document.getElementById('fejl').textContent = 'Forkert kode.';
-  }
-}
-if (sessionStorage.getItem('vigta-ok')==='1'){
+const rigtig = "4173129ae9df301509d1c20b4c3692b9aeec1c098a84ac5fb986f0b141606a58";
+const NOEGLE = 'vigta-ok-until';
+const DAGE90 = 90*24*3600*1000;
+function unlock(){
   document.getElementById('gate').style.display='none';
   document.getElementById('indhold').style.display='block';
 }
+function husk(){
+  // localStorage i try/catch: Safari privat tilstand kaster ved setItem.
+  try{ localStorage.setItem(NOEGLE, String(Date.now()+DAGE90)); }catch(e){}
+}
+async function hashHex(s){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+async function tjekKode(){
+  const v = document.getElementById('kodefelt').value;
+  if (await hashHex(v) === rigtig){ husk(); unlock(); }
+  else { document.getElementById('fejl').textContent = 'Forkert kode.'; }
+}
+(async function(){
+  // 1) Husket på enheden inden for 90 dage?
+  try{
+    const until = parseInt(localStorage.getItem(NOEGLE)||'0',10);
+    if (until && Date.now() < until){ unlock(); return; }
+  }catch(e){}
+  // 2) Nøgle i fragmentet (#n=...)? Fragmentet sendes aldrig til serveren.
+  const m = (location.hash||'').match(/[#&]n=([^&]+)/);
+  if (m){
+    try{
+      if (await hashHex(decodeURIComponent(m[1])) === rigtig){
+        husk(); unlock();
+        // Fjern nøglen fra den synlige adresse efter oplåsning.
+        try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+        return;
+      }
+    }catch(e){}
+  }
+  // 3) Gammel sessionStorage-oplåsning (bagudkompatibel).
+  try{ if (sessionStorage.getItem('vigta-ok')==='1'){ unlock(); return; } }catch(e){}
+})();
 </script>
 </body>
 </html>
