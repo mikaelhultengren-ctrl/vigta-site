@@ -17,6 +17,8 @@
       history.replaceState(null, '', location.pathname);
       if (state.indexOf('app.') === 0) {
         location.replace("dk.exekio.fokusfilter:/kalender-retur" + soeg + frag);
+      } else if (state.indexOf('desk.') === 0) {
+        location.replace("vigta://kalender-retur" + soeg + frag);
       } else if (window.opener) {
         window.opener.postMessage({ type: "vigta-kalender-retur", url: fuld }, "https://vigta.app");
         window.close();
