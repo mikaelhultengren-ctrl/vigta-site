@@ -184,8 +184,8 @@ $('#t1').onclick=()=>setTab('opg');$('#t2').onclick=()=>setTab('kal');
 let lvN=0;
 
 function lvRender(){const bx=$('#lvBox');let n=2;
- bx.innerHTML='<div class="cd" id="lvA1"><div class="tt">'+ic.ag+'<span class="ti">Møde i Næstved</span></div><div class="ch"><span class="pl">+</span><div class="f">'+ic.cal+'Fredag, 10.00</div></div><div class="bt"><button class="ac">Accepter</button></div></div>'
- +'<div class="cd" id="lvA2" style="margin-top:3.4cqw"><span class="lot">'+LOT+'</span><div class="tt"><span class="cr"></span><span class="ti">Tjek trafik før afgang</span></div><div class="ds2">Delopgave: Møde i Næstved</div><div class="ch"><span class="pl">+</span><div class="f i">'+ic.cal+'Fredag, 08.30</div></div><div class="bt"><button class="ac">Accepter</button></div></div>';
+ bx.innerHTML='<div class="cd" id="lvA1"><div class="tt">'+ic.ag+'<span class="ti">Møde i Næstved</span></div><div class="ch"><span class="pl">'+PLUSI+'</span><div class="f">'+ic.cal+'Fredag, 10.00</div></div><div class="bt"><button class="ac">Accepter</button></div></div>'
+ +'<div class="cd" id="lvA2" style="margin-top:3.4cqw"><span class="lot">'+LOT+'</span><div class="tt"><span class="cr"></span><span class="ti">Tjek trafik før afgang</span></div><div class="ds2">Delopgave: Møde i Næstved</div><div class="ch"><span class="pl">'+PLUSI+'</span><div class="f i">'+ic.cal+'Fredag, 08.30</div></div><div class="bt"><button class="ac">Accepter</button></div></div>';
  wire($('#lvA1'));wire($('#lvA2'));['#lvA1','#lvA2'].forEach(id=>{$(id+' .ac').onclick=()=>{$(id).remove();if(--n===0){scr();toast('Oprettet 1 opgave og 1 aftale')}}})}
 $('#bLiv').onclick=()=>{lvRender();scr('#sLiv')};
 $('#xLiv').onclick=()=>scr();
@@ -226,12 +226,13 @@ b:'<div class="ph b2 big"><div><span class="k">Bestil 12 m rør</span></div><div
 l:'<div class="ph L1 big"><div class="lh"><span>Kommunen</span><span class="k">12.11.2026</span></div><p>Vedr. din ansøgning om boligstøtte.</p><p>Vi har brug for yderligere oplysninger. Du bedes <span class="k">svare senest 14 dage efter brevets dato.</span></p><p>Med venlig hilsen<br>Sagsbehandler</p></div>',
 c:'<div class="ph c3 big"></div>'};
 const SPARK='';
-const ic={cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
-clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
-pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 21s6-5.6 6-10.5a6 6 0 10-12 0C6 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg>',
+const GEAR='<svg viewBox="0.5 -0.5 49 49" fill="none" stroke="currentColor" stroke-width="1.23" stroke-linecap="round" stroke-linejoin="round"><path d="M32,35.409v-3.875l-4.612-0.753c-0.273-1.093-0.702-2.119-1.267-3.06l2.688-3.831l-2.74-2.739l-3.782,2.719c-0.943-0.571-1.976-1.006-3.076-1.28l-0.804-4.589h-3.875l-0.747,4.575c-1.101,0.27-2.14,0.699-3.085,1.268l-3.771-2.694l-2.74,2.739l2.653,3.793c-0.573,0.95-1.01,1.987-1.287,3.095L1,31.534v3.875l4.549,0.806c0.274,1.106,0.711,2.143,1.287,3.094l-2.689,3.76l2.739,2.742l3.798-2.66c0.948,0.57,1.985,1.002,3.085,1.274l0.762,4.577h3.875l0.814-4.589c1.095-0.277,2.129-0.713,3.068-1.285l3.824,2.684l2.74-2.742l-2.73-3.791c0.565-0.941,0.994-1.968,1.265-3.061L32,35.409z M16.5,38.667c-2.853,0-5.167-2.314-5.167-5.167c0-2.853,2.313-5.167,5.167-5.167s5.167,2.314,5.167,5.167C21.667,36.354,19.353,38.667,16.5,38.667z"></path><path d="M47.844,18.982L49,16.139l-3.159-1.928c0.126-0.883,0.117-1.764-0.017-2.623l3.115-2.009l-1.193-2.827L44.16,7.619c-0.521-0.7-1.15-1.327-1.875-1.857l0.779-3.607L40.221,1l-1.912,3.133c-0.888-0.13-1.778-0.125-2.642,0.01l-1.963-3.101l-2.827,1.192l0.815,3.574c-0.704,0.526-1.333,1.157-1.867,1.887l-3.567-0.802l-1.156,2.843l3.097,1.948c-0.128,0.893-0.118,1.784,0.021,2.654l-3.094,1.957l1.192,2.829l3.58-0.819c0.525,0.701,1.157,1.327,1.884,1.855l-0.806,3.585l2.843,1.156l1.966-3.124c0.886,0.123,1.775,0.112,2.634-0.028l2.005,3.11l2.828-1.194l-0.872-3.595c0.695-0.522,1.316-1.147,1.841-1.869L47.844,18.982z M35.501,16.75c-2.093-0.851-3.1-3.238-2.249-5.331s3.238-3.1,5.331-2.249c2.093,0.851,3.1,3.238,2.249,5.331C39.982,16.593,37.594,17.601,35.501,16.75z"></path></svg>',PLUSI='<svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="25" x2="41" y2="25"></line><line x1="25" y1="9" x2="41" y2="25" style="display:none"></line><line x1="25" y1="9" x2="25" y2="41"></line></svg>';
+const ic={cal:'<svg viewBox="0 2 50 50" fill="none" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="7" width="41" height="40" rx="2.5"></rect><path d="M4.5 16V9.5A2.5 2.5 0 0 1 7 7h36a2.5 2.5 0 0 1 2.5 2.5V16Z" fill="currentColor" stroke="none"></path><g fill="currentColor" stroke="none"><rect x="23.2" y="21.8" width="3.6" height="3.6" rx=".55"></rect><rect x="29.3" y="21.8" width="3.6" height="3.6" rx=".55"></rect><rect x="35.4" y="21.8" width="3.6" height="3.6" rx=".55"></rect><rect x="11" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="17.1" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="23.2" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="29.3" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="35.4" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="11" y="35.8" width="3.6" height="3.6" rx=".55"></rect><rect x="17.1" y="35.8" width="3.6" height="3.6" rx=".55"></rect><rect x="23.2" y="35.8" width="3.6" height="3.6" rx=".55"></rect><rect x="29.3" y="35.8" width="3.6" height="3.6" rx=".55"></rect></g></svg>',
+clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.49" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>',
+pin:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.49" stroke-linecap="round" stroke-linejoin="round"><path d="M40,19c0,8.837-13.236,26-16,26S8,27.837,8,19S15.163,3,24,3S40,10.163,40,19z"></path><circle cx="24" cy="19" r="7"></circle></svg>',
 list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>',
 star:'<svg viewBox="0 0 24 24" fill="#F2B72B" stroke="#B88A2A" stroke-width="1"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-3-5.4 3 1.1-6L3.2 9.4l6.1-.8z"/></svg>',
-ag:'<svg class="ci" viewBox="0 0 24 24" fill="none" stroke="#2E8B6E" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>'};
+ag:'<svg viewBox="0 2 50 50" fill="none" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="7" width="41" height="40" rx="2.5"></rect><path d="M4.5 16V9.5A2.5 2.5 0 0 1 7 7h36a2.5 2.5 0 0 1 2.5 2.5V16Z" fill="currentColor" stroke="none"></path><g fill="currentColor" stroke="none"><rect x="23.2" y="21.8" width="3.6" height="3.6" rx=".55"></rect><rect x="29.3" y="21.8" width="3.6" height="3.6" rx=".55"></rect><rect x="35.4" y="21.8" width="3.6" height="3.6" rx=".55"></rect><rect x="11" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="17.1" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="23.2" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="29.3" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="35.4" y="28.8" width="3.6" height="3.6" rx=".55"></rect><rect x="11" y="35.8" width="3.6" height="3.6" rx=".55"></rect><rect x="17.1" y="35.8" width="3.6" height="3.6" rx=".55"></rect><rect x="23.2" y="35.8" width="3.6" height="3.6" rx=".55"></rect><rect x="29.3" y="35.8" width="3.6" height="3.6" rx=".55"></rect></g></svg>'};
 const D={
 a:[{k:'ag',t:'Forældremøde',f:[['cal','Fredag','s'],['clock','17.00','s'],['pin','Klasselokalet','s']]},
    {k:'op',t:'Bag kage',f:[['cal','Torsdag','i','Mødet er fredag, så kagen skal være klar dagen før.'],['clock','Tid','m']],cat:'Vigtigt',catwhy:'Du lovede i tråden at tage kagen med.'}],
@@ -245,7 +246,7 @@ function render(id){const box=$('#cards');box.innerHTML='<div class="src" id="sr
  if(!D[id].length){box.innerHTML='<div class="em">Ingen opgave eller aftale at foreslå.</div>';open=0;return}
  open=D[id].length;
  D[id].forEach((c,i)=>{const d=document.createElement('div');d.className='cd in';
-  let h='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>'+(c.ds?'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">'+c.ds+'</div>':'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">Beskrivelse</div>')+'<div class="ch"><span class="pl">+</span>';
+  let h='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>'+(c.ds?'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">'+c.ds+'</div>':'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">Beskrivelse</div>')+'<div class="ch"><span class="pl">'+PLUSI+'</span>';
   c.f.forEach((f,j)=>{h+='<div class="f '+f[2]+'" data-w="'+(f[3]||'')+'">'+ic[f[0]]+f[1]+'</div>'});
   if(c.cat)h+='<div class="tile i" data-w="'+c.catwhy+'">'+ic.star+c.cat+'</div>';
   h+='</div><div class="why"></div>';
@@ -409,8 +410,8 @@ function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').class
   x+='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>';
   const A=c.k==='ag'?' ag2':'';if(c.ds)x+='<div class="ds2 w'+A+'">'+c.ds+'</div>';
   x+='<div class="ds2'+(c.why?' w':'')+A+'">'+(c.why||'Beskrivelse')+'</div>';
-  if(!c.why)x+='<div class="ds2 pr'+A+'">+ '+(c.k==='ag'?'Tilføj forberedelse':'Tilføj delopgave')+'</div>';
-  x+='<div class="ch"><span class="pl">+</span>';
+  if(!c.why)x+='<div class="ds2 pr'+A+'"><i>'+PLUSI+'</i>'+(c.k==='ag'?'Tilføj forberedelse':'Tilføj delopgave')+'</div>';
+  x+='<div class="ch"><span class="pl">'+PLUSI+'</span>';
   c.f.forEach(f=>{x+='<div class="f '+f[2]+'">'+ic[f[0]]+f[1]+'</div>'});
   if(c.cat){const C=CAT[c.cat];x+='<div class="tile i" style="background:'+C[0]+';color:'+C[1]+';border-color:'+C[1]+'66">'+(C[2]||ic.star)+c.cat+'</div>'}
   else if(c.k==='op'||c.k==='chk')x+='<div class="tile" style="background:#F1F1F3;color:#5F5E5A">'+SV.vurder+'Vurder</div>';
@@ -420,7 +421,7 @@ function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').class
   if(c.lv)x+='<div class="lvs"><i></i>'+c.lv+'</div>';
   if(c.opts)x+='<div class="b2">'+c.opts.map(o=>'<button>'+o+'</button>').join('')+'</div>';
   x+='<div class="bt"><button class="ac">'+(c.btn||'Accepter')+'</button><span class="ai">'+((i===0&&S.ai)?S.ai:'AI')+'</span></div>';
-  if(c.k!=='ag')x='<span class="lot">'+LOT+'</span>'+x;
+  x='<span class="lot'+(c.k==='ag'?' blu':'')+'">'+(c.k==='ag'?GEAR:LOT)+'</span>'+x;
   d.innerHTML=x;box.appendChild(d)});
  if(S.nt)box.insertAdjacentHTML('beforeend','<div class="nt" style="color:#2b2b2b;background:rgba(255,255,255,.92);border-radius:3.6cqw;padding:2.6cqw 3.4cqw;margin:0 1cqw;font-size:3.5cqw">'+NT.info+S.nt+'</div>');
  if(S.hid)box.insertAdjacentHTML('beforeend','<div class="hid">'+S.hid+NT.chev+'</div>')}
