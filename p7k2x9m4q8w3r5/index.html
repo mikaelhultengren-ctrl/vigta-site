@@ -242,15 +242,35 @@ function pop(anchor,items,cur,pick){const ph=$('#ph').getBoundingClientRect(),a=
  $('#ph').appendChild(p);const pr=p.getBoundingClientRect();
  let top=a.bottom-ph.top+6,left=a.left-ph.left;if(top+pr.height>ph.height-10)top=a.top-ph.top-pr.height-6;if(left+pr.width>ph.width-8)left=ph.width-pr.width-8;if(left<8)left=8;if(top<8)top=8;
  p.style.top=top+'px';p.style.left=left+'px';$('#popBg').classList.add('on')}
-function closePop(){const p=$('#popBox');if(p)p.remove();$('#popBg').classList.remove('on')}
+function closePop(){if(window._pc){const f=window._pc;window._pc=null;f()}const p=$('#popBox');if(p)p.remove();$('#popBg').classList.remove('on')}
 $('#popBg').onclick=closePop;
+function timeSheet(anchor,cur,onSet){closePop();const m=/(\d{1,2})[.:](\d{2})/.exec(cur||'');let H=m?+m[1]:9,M=m?Math.round(+m[2]/5)*5%60:0,on=true;
+ const p=document.createElement('div');p.className='tp';p.id='popBox';
+ p.innerHTML='<div class="tr">'+ic.clock+'<div><b>Tid</b><small id="tv"></small></div><span class="tg" id="tgl"></span></div><div class="wh" id="wh"><div class="wc" id="wH"></div><div class="wc" id="wM"></div></div>';
+ $('#ph').appendChild(p);const R=$('#ph').getBoundingClientRect().width*.11;
+ const pad=n=>String(n).padStart(2,'0'),hs=[...Array(24).keys()],ms=[...Array(12).keys()].map(i=>i*5);
+ const wH=p.querySelector('#wH'),wM=p.querySelector('#wM');
+ wH.innerHTML=hs.map(h=>'<div>'+pad(h)+'</div>').join('');wM.innerHTML=ms.map(x=>'<div>'+pad(x)+'</div>').join('');
+ const upd=()=>{p.querySelector('#tv').textContent=on?pad(H)+'.'+pad(M):'Ingen';[wH,wM].forEach((w,k)=>[...w.children].forEach((c,i)=>c.classList.toggle('on',i===(k?M/5:H))))};
+ const bind=(w,f)=>{let t;w.onscroll=()=>{clearTimeout(t);t=setTimeout(()=>{const i=Math.max(0,Math.min(w.children.length-1,Math.round(w.scrollTop/R)));f(i);upd()},60)}};
+ bind(wH,i=>H=i);bind(wM,i=>M=i*5);
+ [...wH.children].forEach((c,i)=>c.onclick=()=>wH.scrollTo({top:i*R,behavior:'smooth'}));[...wM.children].forEach((c,i)=>c.onclick=()=>wM.scrollTo({top:i*R,behavior:'smooth'}));
+ const tg=p.querySelector('#tgl');tg.onclick=()=>{on=!on;tg.classList.toggle('off',!on);p.querySelector('#wh').classList.toggle('off',!on);upd()};
+ const ph=$('#ph').getBoundingClientRect(),a=anchor.getBoundingClientRect(),pr=p.getBoundingClientRect();
+ let top=a.bottom-ph.top+6;if(top+pr.height>ph.height-10)top=Math.max(8,ph.height-pr.height-10);p.style.top=top+'px';p.style.left=((ph.width-pr.width)/2)+'px';
+ wH.scrollTop=H*R;wM.scrollTop=M/5*R;upd();$('#popBg').classList.add('on');
+ window._pc=()=>onSet(on?pad(H)+'.'+pad(M):null)}
 const DAYS=['I dag','I morgen','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'];
 const LISTS=['Aktuel TO-DO','Arbejde','Familien','Løbeklubben'];
 const PLUS=[['Tid/dato',ic.cal],['Vedhæft',''],['Delopgaver',ic.list],['Påmindelse',ic.clock],['Deadline',''],['Liste',ic.list],['Tildel','']];
 function setTile(t,name){const c=CAT[name];t.className='tile';t.style.background=c[0];t.style.color=c[1];t.innerHTML=(c[2]||ic.star)+name;t.dataset.cat=name}
 function wire(d){
- d.querySelectorAll('.pl').forEach(e=>e.onclick=ev=>{ev.stopPropagation();pop(e,PLUS.map(x=>({n:x[0],i:x[1]})),null,n=>toast(n+' åbner her'))});
+ d.querySelectorAll('.pl').forEach(e=>e.onclick=ev=>{ev.stopPropagation();pop(e,PLUS.map(x=>({n:x[0],i:x[1]})),null,n=>{if(n!=='Tid/dato'){toast(n+' åbner her');return}const ch=d.querySelector('.ch');let c=[...ch.querySelectorAll('.f')].find(x=>x.innerHTML.includes('M12 7.5V12'));if(!c){c=document.createElement('div');c.className='f m';c.innerHTML=ic.clock+'Tid';ch.appendChild(c);wire(d)}c.click()})});
  d.querySelectorAll('.f').forEach(e=>{if(!e.querySelector('svg')||e.dataset.k==='x')return;e.onclick=ev=>{ev.stopPropagation();const w=e.dataset.w;if(w&&d.querySelector('.why'))d.querySelector('.why').textContent=w;
+   const tx=e.textContent.trim(),clk=e.innerHTML.includes('M12 7.5V12'),comb=/^(.+?),\s*(\d{1,2}[.:]\d{2})$/.exec(tx);
+   const why=()=>{const y=d.querySelector('.why');if(y)y.textContent='';e.removeAttribute('data-w')};
+   if(clk){timeSheet(e,tx,v=>{why();if(v){e.className='f s';e.innerHTML=ic.clock+v}else{e.className='f m';e.innerHTML=ic.clock+'Tid'}});return}
+   if(comb){const day=comb[1];timeSheet(e,comb[2],v=>{why();e.className='f s';e.innerHTML=ic.cal+day+(v?', '+v:'')});return}
    const isDate=/Dato|dag|Fredag|Torsdag|Mandag|Tirsdag|Onsdag|Lørdag|Søndag|morgen|,/.test(e.textContent)&&!/^\d|:|\./.test(e.textContent.trim());
    if(!isDate){toast('Vælger åbner her');return}
    pop(e,DAYS.map(n=>({n})),e.textContent.trim(),n=>{e.className='f s';e.innerHTML=ic.cal+n;e.removeAttribute('data-w');const y=d.querySelector('.why');if(y)y.textContent=''})}});
