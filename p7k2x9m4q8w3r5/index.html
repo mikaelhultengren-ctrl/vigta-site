@@ -98,6 +98,10 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
 .cd .pl{width:10.8cqw;height:10.8cqw;border-radius:50%;background:#EFEFEF;display:flex;align-items:center;justify-content:center;flex:none;font-size:6cqw;color:#222;font-weight:300}
 .cd .why:empty{display:none}
 .cd .bt{margin-top:4.4cqw}
+.pop{position:absolute;z-index:30;background:#fff;border-radius:4.4cqw;box-shadow:0 2cqw 9cqw rgba(0,0,0,.28);padding:1.6cqw 0;min-width:46cqw;max-height:110cqw;overflow:auto;font-size:4.2cqw;color:#222}
+.pop div{display:flex;align-items:center;gap:3cqw;padding:2.3cqw 4.6cqw;cursor:pointer;white-space:nowrap}.pop div:active{background:#F1F1EF}.pop svg{width:5.2cqw;height:5.2cqw;flex:none}.pop .sel{font-weight:600}
+#popBg{position:absolute;inset:0;z-index:29;display:none}#popBg.on{display:block}
+.cd .lot,.cd .tile,.cd .pl,.cd .f,.cd .ds2,.cd .ti{cursor:pointer}.cd .ds2 input{font:inherit;border:0;outline:0;border-bottom:.4cqw solid #5FA88E;width:100%;color:#222;background:transparent;padding:0}
 @media (display-mode:standalone){body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}#ph{width:min(100vw,calc((100vh - 60px)*.46),460px)}}
 </style></head><body>
 <div id="ph">
@@ -137,7 +141,7 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
   <div class="sol" style="bottom:28cqw"><div class="tt"><span class="ti">Skal Vigta læse højt?</span></div>
    <div class="bt"><button class="ne" id="voN">Nej tak</button><button class="ac" id="voY">Ja, læs op</button></div></div></div>
  <div id="pv"><div class="rd" id="pvb"></div></div>
- <div class="toast" id="toast"></div>
+ <div id="popBg"></div><div class="toast" id="toast"></div>
 </div>
 <div class="ctl"><span>Hold på stjernen. Tryk er som i dag.</span><button id="reset">Nulstil</button><button id="bLiv">Tjek-opgave</button><button id="bVo">Oplæsning</button></div>
 <script>
@@ -155,7 +159,7 @@ let lvN=0;
 function lvRender(){const bx=$('#lvBox');let n=2;
  bx.innerHTML='<div class="cd" id="lvA1"><div class="tt">'+ic.ag+'<span class="ti">Møde i Næstved</span></div><div class="ch"><span class="pl">+</span><div class="f">'+ic.cal+'Fredag, 10.00</div></div><div class="bt"><button class="ac">Accepter</button></div></div>'
  +'<div class="cd" id="lvA2" style="margin-top:3.4cqw"><span class="lot">'+LOT+'</span><div class="tt"><span class="cr"></span><span class="ti">Tjek trafik før afgang</span></div><div class="ds2">Delopgave: Møde i Næstved</div><div class="ch"><span class="pl">+</span><div class="f i">'+ic.cal+'Fredag, 08.30</div></div><div class="bt"><button class="ac">Accepter</button></div></div>';
- ['#lvA1','#lvA2'].forEach(id=>{$(id+' .ac').onclick=()=>{$(id).remove();if(--n===0){scr();toast('Oprettet 1 opgave og 1 aftale')}}})}
+ wire($('#lvA1'));wire($('#lvA2'));['#lvA1','#lvA2'].forEach(id=>{$(id+' .ac').onclick=()=>{$(id).remove();if(--n===0){scr();toast('Oprettet 1 opgave og 1 aftale')}}})}
 $('#bLiv').onclick=()=>{lvRender();scr('#sLiv')};
 $('#xLiv').onclick=()=>scr();
 $('#bVo').onclick=()=>scr('#sVo');
@@ -220,13 +224,44 @@ function render(id){const box=$('#cards');box.innerHTML='<div class="src" id="sr
   h+='</div><div class="why"></div>';
   if(c.q)h+='<div class="dq"><p>'+c.q.t+'</p><div class="o">'+c.q.o.map(o=>'<button>'+o+'</button>').join('')+'<button aria-label="Indtal">Indtal</button></div></div>';
   h+='<div class="bt"><button class="ac">Accepter</button></div>';
-  if(c.k==='op')h='<span class="lot">'+LOT+'</span>'+h;d.innerHTML=h;box.appendChild(d);d._c=c;
-  d.querySelectorAll('[data-w]').forEach(e=>e.onclick=()=>{const w=e.dataset.w;if(w)d.querySelector('.why').textContent=w});
+  if(c.k==='op')h='<span class="lot">'+LOT+'</span>'+h;d.innerHTML=h;box.appendChild(d);d._c=c;wire(d);
   d.querySelectorAll('.dq button').forEach(b=>b.onclick=()=>{if(b.textContent==='Indtal'){toast('Indtal åbner her');return}
    d.querySelector('.ti').textContent=c.t+' til '+b.textContent;d.querySelector('.dq').remove()});
   d.querySelector('.ac').onclick=()=>accept(d);
   d.querySelector('.ti').onclick=()=>{const ti=d.querySelector('.ti');if(ti.querySelector('input'))return;const v=ti.textContent;ti.innerHTML='<input value="'+v+'">';const inp=ti.querySelector('input');inp.focus();const sv=()=>{ti.textContent=inp.value||v};inp.onblur=sv;inp.onkeydown=e=>{if(e.key==='Enter')inp.blur()}};
-  d.querySelectorAll('.pl,.f').forEach(e=>e.onclick=()=>{const w=e.dataset&&e.dataset.w;if(w){d.querySelector('.why').textContent=w}else toast(e.classList.contains('pl')?'Flere felter åbner her':'Vælger åbner her')})})}
+  })}
+
+const SV={haster:'<svg viewBox="0 0 24 24" fill="#D93636"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 17.6v.1" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>',
+ hurtigt:'<svg viewBox="0 0 24 24" fill="#2E8B6E"><path d="M13 2L5 13.5h5.5L10 22l9-12h-5.8z"/></svg>',
+ senere:'<svg viewBox="0 0 24 24" fill="#8E8E93"><path d="M20 14.5A8.5 8.5 0 119.5 4 7 7 0 0020 14.5z"/></svg>',
+ vurder:'<svg viewBox="0 0 24 24" fill="none" stroke="#5F5E5A" stroke-width="1.7" stroke-linecap="round"><path d="M6 4v16M12 4v16M18 4v16"/><circle cx="6" cy="9" r="2" fill="#fff"/><circle cx="12" cy="15" r="2" fill="#fff"/><circle cx="18" cy="8" r="2" fill="#fff"/></svg>'};
+const CAT={Haster:['#FBE4E2','#A32D2D',SV.haster],Vigtigt:['#FDF3DC','#8A5A08',null],Hurtigt:['#E1F5EE','#0F6E56',SV.hurtigt],Senere:['#EDEDEB','#555552',SV.senere]};
+function pop(anchor,items,cur,pick){const ph=$('#ph').getBoundingClientRect(),a=anchor.getBoundingClientRect(),sc=ph.width/100;
+ closePop();const p=document.createElement('div');p.className='pop';p.id='popBox';
+ items.forEach(it=>{const d=document.createElement('div');if(it.n===cur)d.className='sel';d.innerHTML=(it.i||'')+(it.n);d.onclick=e=>{e.stopPropagation();closePop();pick(it.n)};p.appendChild(d)});
+ $('#ph').appendChild(p);const pr=p.getBoundingClientRect();
+ let top=a.bottom-ph.top+6,left=a.left-ph.left;if(top+pr.height>ph.height-10)top=a.top-ph.top-pr.height-6;if(left+pr.width>ph.width-8)left=ph.width-pr.width-8;if(left<8)left=8;if(top<8)top=8;
+ p.style.top=top+'px';p.style.left=left+'px';$('#popBg').classList.add('on')}
+function closePop(){const p=$('#popBox');if(p)p.remove();$('#popBg').classList.remove('on')}
+$('#popBg').onclick=closePop;
+const DAYS=['I dag','I morgen','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'];
+const LISTS=['Aktuel TO-DO','Arbejde','Familien','Løbeklubben'];
+const PLUS=[['Tid/dato',ic.cal],['Vedhæft',''],['Delopgaver',ic.list],['Påmindelse',ic.clock],['Deadline',''],['Liste',ic.list],['Tildel','']];
+function setTile(t,name){const c=CAT[name];t.className='tile';t.style.background=c[0];t.style.color=c[1];t.innerHTML=(c[2]||ic.star)+name;t.dataset.cat=name}
+function wire(d){
+ d.querySelectorAll('.pl').forEach(e=>e.onclick=ev=>{ev.stopPropagation();pop(e,PLUS.map(x=>({n:x[0],i:x[1]})),null,n=>toast(n+' åbner her'))});
+ d.querySelectorAll('.f').forEach(e=>{if(!e.querySelector('svg')||e.dataset.k==='x')return;e.onclick=ev=>{ev.stopPropagation();const w=e.dataset.w;if(w&&d.querySelector('.why'))d.querySelector('.why').textContent=w;
+   const isDate=/Dato|dag|Fredag|Torsdag|Mandag|Tirsdag|Onsdag|Lørdag|Søndag|morgen|,/.test(e.textContent)&&!/^\d|:|\./.test(e.textContent.trim());
+   if(!isDate){toast('Vælger åbner her');return}
+   pop(e,DAYS.map(n=>({n})),e.textContent.trim(),n=>{e.className='f s';e.innerHTML=ic.cal+n;e.removeAttribute('data-w');const y=d.querySelector('.why');if(y)y.textContent=''})}});
+ const ti=d.querySelector('.tile');
+ let t=ti;if(!t&&d.querySelector('.lot')){t=document.createElement('div');t.className='tile';t.innerHTML=SV.vurder+'Vurder';d.querySelector('.ch').appendChild(t)}
+ if(t){t.onclick=ev=>{ev.stopPropagation();const w=t.dataset.w;if(w&&d.querySelector('.why'))d.querySelector('.why').textContent=w;
+   pop(t,Object.keys(CAT).map(n=>({n,i:CAT[n][2]||ic.star})),t.dataset.cat||(d._c&&d._c.cat)||null,n=>{setTile(t,n);t.removeAttribute('data-w')})}}
+ const lo=d.querySelector('.lot:not(.l)');
+ if(lo){lo.onclick=ev=>{ev.stopPropagation();pop(lo,LISTS.map(n=>({n,i:ic.list})),'Aktuel TO-DO',n=>{toast('Flyttet til '+n);if(n==='Arbejde'){lo.style.background='#E3F0F8';lo.innerHTML=ic.clock.replace('currentColor','#057BB0')}else{lo.style.background='';lo.innerHTML=LOT}})}}
+ const ds=d.querySelector('.ds2');if(ds&&ds.textContent==='Beskrivelse'){ds.onclick=()=>{if(ds.querySelector('input'))return;ds.innerHTML='<input placeholder="Beskrivelse">';const i=ds.querySelector('input');i.focus();i.onblur=()=>{ds.textContent=i.value||'Beskrivelse'};i.onkeydown=e=>{if(e.key==='Enter')i.blur()}}}
+}
 function accept(d){if(d.classList.contains('done'))return;d.classList.add('done');made[d._c.k]++;open--;setTimeout(()=>{d.remove();if(open<=0)finish()},380)}
 function finish(){scr();const a=made.ag,o=made.op;const p=[];if(o)p.push(o+(o>1?' opgaver':' opgave'));if(a)p.push(a+(a>1?' aftaler':' aftale'));toast(p.length?'Oprettet '+p.join(' og '):'Intet oprettet')}
 $('#okFor').onclick=()=>{$$('#cards .cd').forEach(accept)};
