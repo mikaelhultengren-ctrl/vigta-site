@@ -254,7 +254,11 @@ function timeSheet(anchor,cur,onSet){closePop();const m=/(\d{1,2})[.:](\d{2})/.e
  const upd=()=>{p.querySelector('#tv').textContent=on?pad(H)+'.'+pad(M):'Ingen';[wH,wM].forEach((w,k)=>[...w.children].forEach((c,i)=>c.classList.toggle('on',i===(k?M/5:H))))};
  const bind=(w,f)=>{let t;w.onscroll=()=>{clearTimeout(t);t=setTimeout(()=>{const i=Math.max(0,Math.min(w.children.length-1,Math.round(w.scrollTop/R)));f(i);upd()},60)}};
  bind(wH,i=>H=i);bind(wM,i=>M=i*5);
- [...wH.children].forEach((c,i)=>c.onclick=()=>wH.scrollTo({top:i*R,behavior:'smooth'}));[...wM.children].forEach((c,i)=>c.onclick=()=>wM.scrollTo({top:i*R,behavior:'smooth'}));
+ [wH,wM].forEach(w=>{let y0=0,s0=0,mv=0,dn=false;const snap=()=>w.scrollTo({top:Math.max(0,Math.min(w.children.length-1,Math.round(w.scrollTop/R)))*R,behavior:'smooth'});
+  w.onpointerdown=e=>{dn=true;mv=0;y0=e.clientY;s0=w.scrollTop;w.setPointerCapture(e.pointerId)};
+  w.onpointermove=e=>{if(!dn)return;const dy=e.clientY-y0;mv=Math.max(mv,Math.abs(dy));w.scrollTop=s0-dy};
+  w.onpointerup=w.onpointercancel=e=>{if(!dn)return;dn=false;if(mv<5){const r=w.getBoundingClientRect(),i=Math.round((w.scrollTop+e.clientY-r.top-r.height/2)/R);w.scrollTo({top:Math.max(0,Math.min(w.children.length-1,i))*R,behavior:'smooth'})}else snap()};
+  w.addEventListener('wheel',e=>{e.preventDefault();w.scrollTop+=e.deltaY;clearTimeout(w._t);w._t=setTimeout(snap,120)},{passive:false})});
  const tg=p.querySelector('#tgl');tg.onclick=()=>{on=!on;tg.classList.toggle('off',!on);p.querySelector('#wh').classList.toggle('off',!on);upd()};
  const ph=$('#ph').getBoundingClientRect(),a=anchor.getBoundingClientRect(),pr=p.getBoundingClientRect();
  let top=a.bottom-ph.top+6;if(top+pr.height>ph.height-10)top=Math.max(8,ph.height-pr.height-10);p.style.top=top+'px';p.style.left=((ph.width-pr.width)/2)+'px';
