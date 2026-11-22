@@ -413,7 +413,7 @@ function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').class
   x+='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>';
   const A=c.k==='ag'?' ag2':'';if(c.ds)x+='<div class="ds2 w'+A+'">'+c.ds+'</div>';
   if(c.why||!c.ds)x+='<div class="ds2'+(c.why?' w':'')+A+'">'+(c.why||'Beskrivelse')+'</div>';
-  if(!c.why&&!c.ds)x+='<div class="ds2 pr'+A+'"><i>'+PLUSI+'</i>'+(c.k==='ag'?'Tilføj forberedelse':'Tilføj delopgave')+'</div>';
+
   x+='<div class="ch"><span class="pl">'+PLUSI+'</span>';
   c.f.forEach(f=>{x+='<div class="f '+f[2]+'">'+ic[f[0]]+f[1]+'</div>'});
   if(c.cat){const C=CAT[c.cat];x+='<div class="tile i" style="background:'+C[0]+';color:'+C[1]+';border-color:'+C[1]+'66">'+(C[2]||ic.star)+c.cat+'</div>'}
