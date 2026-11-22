@@ -184,8 +184,8 @@ $('#t1').onclick=()=>setTab('opg');$('#t2').onclick=()=>setTab('kal');
 let lvN=0;
 
 function lvRender(){const bx=$('#lvBox');let n=2;
- bx.innerHTML='<div class="cd" id="lvA1"><div class="tt">'+ic.ag+'<span class="ti">Møde i Næstved</span></div><div class="ch"><span class="pl">'+PLUSI+'</span><div class="f">'+ic.cal+'Fredag, 10.00</div></div><div class="bt"><button class="ac">Accepter</button></div></div>'
- +'<div class="cd" id="lvA2" style="margin-top:3.4cqw"><span class="lot">'+LOT+'</span><div class="tt"><span class="cr"></span><span class="ti">Tjek trafik før afgang</span></div><div class="ds2">Delopgave: Møde i Næstved</div><div class="ch"><span class="pl">'+PLUSI+'</span><div class="f i">'+ic.cal+'Fredag, 08.30</div></div><div class="bt"><button class="ac">Accepter</button></div></div>';
+ bx.innerHTML='<div class="cd" id="lvA1"><div class="tt">'+ic.ag+'<span class="ti">Møde i Næstved</span></div><div class="ch"><span class="pl">'+PLUSI+'</span><div class="f">'+ic.cal+'Fredag, 10.00</div></div><div class="bt"><button class="ac ck" aria-label="Accepter">'+CKI+'</button></div></div>'
+ +'<div class="cd" id="lvA2" style="margin-top:3.4cqw"><span class="lot">'+LOT+'</span><div class="tt"><span class="cr"></span><span class="ti">Tjek trafik før afgang</span></div><div class="ds2">Delopgave: Møde i Næstved</div><div class="ch"><span class="pl">'+PLUSI+'</span><div class="f i">'+ic.cal+'Fredag, 08.30</div></div><div class="bt"><button class="ac ck" aria-label="Accepter">'+CKI+'</button></div></div>';
  wire($('#lvA1'));wire($('#lvA2'));['#lvA1','#lvA2'].forEach(id=>{$(id+' .ac').onclick=()=>{$(id).remove();if(--n===0){scr();toast('Oprettet 1 opgave og 1 aftale')}}})}
 $('#bLiv').onclick=()=>{lvRender();scr('#sLiv')};
 $('#xLiv').onclick=()=>scr();
@@ -241,6 +241,7 @@ b:[{k:'op',t:'Bestil 12 m rør',f:[['cal','Dato','m']],q:{t:'Usikker: Lindholm e
 c:[],
 l:[{k:'op',t:'Svar på brev',f:[['cal','Torsdag','i','Brevet er dateret 12. november. 14 dage giver 26. november.']]}]};
 const LOT='<svg viewBox="0 0 24 24" fill="none" stroke="#3F8F72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c2 2 2.8 4.4 2.4 7-.4 2-1.4 3.4-2.4 4.2-1-.8-2-2.2-2.4-4.2C9.2 9.4 10 7 12 5z"/><path d="M9.8 15.2C7.6 15 5.6 13.6 4.2 11c-.5-.9-.3-1.4.6-1.4 1.9 0 3.4.8 4.4 2.2M14.2 15.2c2.2-.2 4.2-1.6 5.6-4.2.5-.9.3-1.4-.6-1.4-1.9 0-3.4.8-4.4 2.2"/><path d="M6 17.6c2 1.4 4 1.9 6 1.9s4-.5 6-1.9"/></svg>';
+const CKI='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
 let open=0,made={ag:0,op:0};
 function render(id){const box=$('#cards');box.innerHTML='<div class="src" id="srcc"><div class="sm">'+photos[id].replace(/ class="k"/g,'').replace('ph ','ph ')+'</div>Fra dit billede</div>';made={ag:0,op:0};$('#srcc').onclick=()=>{$('#pvb').innerHTML=photos[id];$('#pv').classList.add('on')};
  if(!D[id].length){box.innerHTML='<div class="em">Ingen opgave eller aftale at foreslå.</div>';open=0;return}
@@ -251,13 +252,14 @@ function render(id){const box=$('#cards');box.innerHTML='<div class="src" id="sr
   if(c.cat)h+='<div class="tile i" data-w="'+c.catwhy+'">'+ic.star+c.cat+'</div>';
   h+='</div><div class="why"></div>';
   if(c.q)h+='<div class="dq"><p>'+c.q.t+'</p><div class="o">'+c.q.o.map(o=>'<button>'+o+'</button>').join('')+'<button aria-label="Indtal">Indtal</button></div></div>';
-  h+='<div class="bt"><button class="ac">Accepter</button></div>';
+  h+='<div class="bt"><button class="ac ck" aria-label="Accepter">'+CKI+'</button></div>';
   if(c.k==='op')h='<span class="lot">'+LOT+'</span>'+h;d.innerHTML=h;box.appendChild(d);d._c=c;wire(d);
   d.querySelectorAll('.dq button').forEach(b=>b.onclick=()=>{if(b.textContent==='Indtal'){toast('Indtal åbner her');return}
    d.querySelector('.ti').textContent=c.t+' til '+b.textContent;d.querySelector('.dq').remove()});
   d.querySelector('.ac').onclick=()=>accept(d);
   d.querySelector('.ti').onclick=()=>{const ti=d.querySelector('.ti');if(ti.querySelector('input'))return;const v=ti.textContent;ti.innerHTML='<input value="'+v+'">';const inp=ti.querySelector('input');inp.focus();const sv=()=>{ti.textContent=inp.value||v};inp.onblur=sv;inp.onkeydown=e=>{if(e.key==='Enter')inp.blur()}};
-  })}
+  });
+ if(D[id].length>1){const b=document.createElement('button');b.className='all';b.textContent='Accepter alle';b.onclick=()=>$('#okFor').click();box.appendChild(b)}}
 
 const SV={haster:'<svg viewBox="0 0 24 24" fill="#D93636"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 17.6v.1" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>',
  hurtigt:'<svg viewBox="0 0 24 24" fill="#2E8B6E"><path d="M13 2L5 13.5h5.5L10 22l9-12h-5.8z"/></svg>',
@@ -334,6 +336,7 @@ function finish(){scr();const a=made.ag,o=made.op;const p=[];if(o)p.push(o+(o>1?
 $('#okFor').onclick=()=>{$$('#cards .cd').forEach(accept)};
 $('#pv').onclick=()=>$('#pv').classList.remove('on');
 $('#xFor').onclick=()=>{open=0;made={ag:0,op:0};scr();toast('Intet oprettet')};
+$('#sFor .dim').onclick=()=>$('#xFor').click();
 $$('.th').forEach(el=>{const p=el.dataset.p;el.firstElementChild.innerHTML=({a:'<div class="hd">4.B Forældre</div><div class="b"><i>Mette</i>Forældremøde 27.11 kl. 17…</div><div class="b r"><i>Sofie</i>Jeg tager kagen med.</div>',b:'<div>Bestil 12 m rør</div><div>til Lindholm, nej</div><div>Nørholm</div>',c:''})[p];
  el.onclick=()=>startRead(p)});
 $('#rd').insertAdjacentHTML('beforeend','');
@@ -409,8 +412,8 @@ function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').class
   
   x+='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>';
   const A=c.k==='ag'?' ag2':'';if(c.ds)x+='<div class="ds2 w'+A+'">'+c.ds+'</div>';
-  x+='<div class="ds2'+(c.why?' w':'')+A+'">'+(c.why||'Beskrivelse')+'</div>';
-  if(!c.why)x+='<div class="ds2 pr'+A+'"><i>'+PLUSI+'</i>'+(c.k==='ag'?'Tilføj forberedelse':'Tilføj delopgave')+'</div>';
+  if(c.why||!c.ds)x+='<div class="ds2'+(c.why?' w':'')+A+'">'+(c.why||'Beskrivelse')+'</div>';
+  if(!c.why&&!c.ds)x+='<div class="ds2 pr'+A+'"><i>'+PLUSI+'</i>'+(c.k==='ag'?'Tilføj forberedelse':'Tilføj delopgave')+'</div>';
   x+='<div class="ch"><span class="pl">'+PLUSI+'</span>';
   c.f.forEach(f=>{x+='<div class="f '+f[2]+'">'+ic[f[0]]+f[1]+'</div>'});
   if(c.cat){const C=CAT[c.cat];x+='<div class="tile i" style="background:'+C[0]+';color:'+C[1]+';border-color:'+C[1]+'66">'+(C[2]||ic.star)+c.cat+'</div>'}
@@ -420,9 +423,10 @@ function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').class
   if(c.q)x+='<div class="dq"><p>'+c.q.t+'</p><div class="o">'+c.q.o.map(o=>'<button>'+o+'</button>').join('')+'</div></div>';
   if(c.lv)x+='<div class="lvs"><i></i>'+c.lv+'</div>';
   if(c.opts)x+='<div class="b2">'+c.opts.map(o=>'<button>'+o+'</button>').join('')+'</div>';
-  x+='<div class="bt"><button class="ac">'+(c.btn||'Accepter')+'</button><span class="ai">'+((i===0&&S.ai)?S.ai:'AI')+'</span></div>';
+  x+='<div class="bt">'+(c.btn?'<button class="ac">'+c.btn+'</button>':'<button class="ac ck" aria-label="Accepter">'+CKI+'</button>')+'<span class="ai">'+((i===0&&S.ai)?S.ai:'AI')+'</span></div>';
   x='<span class="lot'+(c.k==='ag'?' blu':'')+'">'+(c.k==='ag'?GEAR:LOT)+'</span>'+x;
   d.innerHTML=x;box.appendChild(d)});
+ if(S.c.length>1)box.insertAdjacentHTML('beforeend','<button class="all">Accepter alle</button>');
  if(S.nt)box.insertAdjacentHTML('beforeend','<div class="nt" style="color:#2b2b2b;background:rgba(255,255,255,.92);border-radius:3.6cqw;padding:2.6cqw 3.4cqw;margin:0 1cqw;font-size:3.5cqw">'+NT.info+S.nt+'</div>');
  if(S.hid)box.insertAdjacentHTML('beforeend','<div class="hid">'+S.hid+NT.chev+'</div>')}
 </script></body></html>
