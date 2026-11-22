@@ -242,11 +242,12 @@ c:[],
 l:[{k:'op',t:'Svar på brev',f:[['cal','Torsdag','i','Brevet er dateret 12. november. 14 dage giver 26. november.']]}]};
 const LOT='<svg viewBox="0 0 24 24" fill="none" stroke="#3F8F72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c2 2 2.8 4.4 2.4 7-.4 2-1.4 3.4-2.4 4.2-1-.8-2-2.2-2.4-4.2C9.2 9.4 10 7 12 5z"/><path d="M9.8 15.2C7.6 15 5.6 13.6 4.2 11c-.5-.9-.3-1.4.6-1.4 1.9 0 3.4.8 4.4 2.2M14.2 15.2c2.2-.2 4.2-1.6 5.6-4.2.5-.9.3-1.4-.6-1.4-1.9 0-3.4.8-4.4 2.2"/><path d="M6 17.6c2 1.4 4 1.9 6 1.9s4-.5 6-1.9"/></svg>';
 const CKI='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+function addClock(c){if(!c||!c.f||c.k==='list')return;const i=c.f.findIndex(f=>f[0]==='cal');if(i<0||c.f.some(f=>f[0]==='clock'))return;c.f.splice(i+1,0,['clock','Tid','m'])}
 let open=0,made={ag:0,op:0};
 function render(id){const box=$('#cards');box.innerHTML='<div class="src" id="srcc"><div class="sm">'+photos[id].replace(/ class="k"/g,'').replace('ph ','ph ')+'</div>Fra dit billede</div>';made={ag:0,op:0};$('#srcc').onclick=()=>{$('#pvb').innerHTML=photos[id];$('#pv').classList.add('on')};
  if(!D[id].length){box.innerHTML='<div class="em">Ingen opgave eller aftale at foreslå.</div>';open=0;return}
  open=D[id].length;
- D[id].forEach((c,i)=>{const d=document.createElement('div');d.className='cd in';
+ D[id].forEach(addClock);D[id].forEach((c,i)=>{const d=document.createElement('div');d.className='cd in';
   let h='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>'+(c.ds?'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">'+c.ds+'</div>':'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">Beskrivelse</div>')+'<div class="ch"><span class="pl">'+PLUSI+'</span>';
   c.f.forEach((f,j)=>{h+='<div class="f '+f[2]+'" data-w="'+(f[3]||'')+'">'+ic[f[0]]+f[1]+'</div>'});
   if(c.cat)h+='<div class="tile i" data-w="'+c.catwhy+'">'+ic.star+c.cat+'</div>';
@@ -377,7 +378,7 @@ const SC={
  s09:{n:'09',t:'Brev fra kommunen',s:'Billede · regnet frist',src:['img','Fra dit billede','l'],
   c:[{k:'op',t:'Svar på brev',f:[['cal','Torsdag 26.11','i']],why:'Brevet er dateret 12. november. 14 dage giver 26. november.'}]},
  s10:{n:'10',t:'Sæsonprogram med træning',s:'Billede · gentagen aftale og vane',src:['img','Fra dit billede'],
-  c:[{k:'ag',t:'Træning',f:[['cal','Hver tirsdag','s'],['clock','18.00-19.30','s'],['pin','Hallen','s']]},
+  c:[{k:'ag',t:'Træning',f:[['cal','Tirsdage','s'],['clock','18-19.30','s'],['pin','Hallen','s']]},
      {k:'op',t:'Pak sportstaske',ds:'Du plejer at gøre det aftenen før',f:[['cal','Mandag','i'],['clock','19.00','i']]}]},
  s11:{n:'11',t:'Flybekræftelse',s:'Tekst · rejsen tænkes igennem',src:['txt','Fra din tekst'],tight:1,
   c:[{k:'ag',t:'Fly til Billund',f:[['cal','Fredag 27.11','s'],['clock','07.10','s'],['clock','Mød 05.10','i']]},
@@ -405,7 +406,7 @@ function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').class
  let h='<div class="src"><div class="sm'+(ph?'':' ic')+'">'+(ph?photos[ph].replace(/ class="k"/g,''):NT[S.src[0]])+'</div>'+S.src[1]+'</div>';
  box.innerHTML=h;
  if(S.em){box.insertAdjacentHTML('beforeend','<div class="em">Ingen opgave eller aftale at foreslå.</div>');return}
- S.c.forEach((c,i)=>{const d=document.createElement('div');d.className='cd';
+ S.c.forEach(addClock);S.c.forEach((c,i)=>{const d=document.createElement('div');d.className='cd';
   let x='';
   if(c.k==='list'){x='<div class="tt"><span class="ti">'+c.t+'</span></div><div class="ch" style="margin-top:3cqw;margin-bottom:1cqw"><div class="f s">'+ic.list+'Indkøb · delt med Marie</div></div>'+c.items.map(it=>'<div class="li'+(it[1]?' fd':'')+'"><span class="cr"></span>'+it[0]+'</div>').join('')+'<div class="bt"><button class="ac">'+c.btn+'</button><span class="ai">AI</span></div>';
    d.innerHTML='<span class="lot">'+LOT+'</span>'+x;box.appendChild(d);return}
