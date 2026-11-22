@@ -245,7 +245,7 @@ function render(id){const box=$('#cards');box.innerHTML='<div class="src" id="sr
  if(!D[id].length){box.innerHTML='<div class="em">Ingen opgave eller aftale at foreslå.</div>';open=0;return}
  open=D[id].length;
  D[id].forEach((c,i)=>{const d=document.createElement('div');d.className='cd in';
-  let h='<div class="tt">'+(c.k==='ag'?ic.ag:'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>'+(c.ds?'<div class="ds2">'+c.ds+'</div>':'')+'<div class="ch"><span class="pl">+</span>';
+  let h='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>'+(c.ds?'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">'+c.ds+'</div>':'<div class="ds2'+(c.k==='ag'?' ag2':'')+'">Beskrivelse</div>')+'<div class="ch"><span class="pl">+</span>';
   c.f.forEach((f,j)=>{h+='<div class="f '+f[2]+'" data-w="'+(f[3]||'')+'">'+ic[f[0]]+f[1]+'</div>'});
   if(c.cat)h+='<div class="tile i" data-w="'+c.catwhy+'">'+ic.star+c.cat+'</div>';
   h+='</div><div class="why"></div>';
@@ -396,7 +396,7 @@ const SC={
   c:[{k:'op',t:'Send de 5 emner til vurdering',ds:'På tværs, med samme skabelon og ansvarlige som sidst',f:[['cal','Fredag','i']],btn:'Send til På tværs',opts:['Uddelegér vurderingen']}]},
  s18:{n:'18',t:'Billede uden indhold',s:'Billede · Vigta svarer altid',src:['img','Fra dit billede'],em:1}
 };
-function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').classList.toggle('tight',!!S.tight);
+function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').classList.toggle('tight',!!S.tight);$('#sFor').classList.toggle('many',(S.c||[]).length>=3);
  const ph=S.src[2];
  let h='<div class="src"><div class="sm'+(ph?'':' ic')+'">'+(ph?photos[ph].replace(/ class="k"/g,''):NT[S.src[0]])+'</div>'+S.src[1]+'</div>';
  box.innerHTML=h;
@@ -406,15 +406,15 @@ function scen(key){const S=SC[key],box=$('#cards');scr('#sFor');$('#sFor').class
   if(c.k==='list'){x='<div class="tt"><span class="ti">'+c.t+'</span></div><div class="ch" style="margin-top:3cqw;margin-bottom:1cqw"><div class="f s">'+ic.list+'Indkøb · delt med Marie</div></div>'+c.items.map(it=>'<div class="li'+(it[1]?' fd':'')+'"><span class="cr"></span>'+it[0]+'</div>').join('')+'<div class="bt"><button class="ac">'+c.btn+'</button><span class="ai">AI</span></div>';
    d.innerHTML='<span class="lot">'+LOT+'</span>'+x;box.appendChild(d);return}
   
-  x+='<div class="tt">'+(c.k==='ag'?ic.ag:'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>';
-  if(c.k!=='ag'&&c.ds)x+='<div class="ds2" style="color:#4a5f58">'+c.ds+'</div>';
-  else if(c.ds)x+='<div class="ds2" style="color:#4a5f58">'+c.ds+'</div>';
+  x+='<div class="tt">'+(c.k==='ag'?'<span class="agc">'+ic.ag+'</span>':'<span class="cr"></span>')+'<span class="ti">'+c.t+'</span></div>';
+  const A=c.k==='ag'?' ag2':'';if(c.ds)x+='<div class="ds2 w'+A+'">'+c.ds+'</div>';
+  x+='<div class="ds2'+(c.why?' w':'')+A+'">'+(c.why||'Beskrivelse')+'</div>';
+  if(!c.why)x+='<div class="ds2 pr'+A+'">+ '+(c.k==='ag'?'Tilføj forberedelse':'Tilføj delopgave')+'</div>';
   x+='<div class="ch"><span class="pl">+</span>';
   c.f.forEach(f=>{x+='<div class="f '+f[2]+'">'+ic[f[0]]+f[1]+'</div>'});
   if(c.cat){const C=CAT[c.cat];x+='<div class="tile i" style="background:'+C[0]+';color:'+C[1]+';border-color:'+C[1]+'66">'+(C[2]||ic.star)+c.cat+'</div>'}
   else if(c.k==='op'||c.k==='chk')x+='<div class="tile" style="background:#F1F1F3;color:#5F5E5A">'+SV.vurder+'Vurder</div>';
   x+='</div>';
-  if(c.why)x+='<div class="why" style="display:block">'+c.why+'</div>';
   if(c.nt)x+='<div class="nt">'+NT.info+c.nt+'</div>';
   if(c.q)x+='<div class="dq"><p>'+c.q.t+'</p><div class="o">'+c.q.o.map(o=>'<button>'+o+'</button>').join('')+'</div></div>';
   if(c.lv)x+='<div class="lvs"><i></i>'+c.lv+'</div>';
