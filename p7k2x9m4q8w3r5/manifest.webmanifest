@@ -1,0 +1,1 @@
+{"name": "Vigta prototype", "short_name": "Vigta", "start_url": "./", "display": "standalone", "background_color": "#E9E6DD", "theme_color": "#E9E6DD", "icons": [{"src": "icon.png", "sizes": "1024x1024", "type": "image/png"}]}
