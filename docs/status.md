@@ -8,11 +8,11 @@ Grenen `pl` holder `docs/` og flettes aldrig til `main`.
 - 25.11.2026 · Første opgave: Pages-indstilling, de to skjulte mapper og oversigt over sitet. Ingen ændringer på sitet.
 - 25.11.2026 · Mikael gav direkte i chatten sessionen lov til at bruge GitHub-login til `gh` og push.
 
-- 25.11.2026 · Statussiden (`jkvmyomogbzimrw43iu9/`), ordre `2026-11-25-overhaling-1.md` del A: **ikke færdig**. Disallow-linjen er fjernet i arbejdsklonen på `statusside-af`, men sletning af mappen blev afvist af sessionens tilladelsestilstand. Må ikke flettes, før mappen også er slettet.
+- 25.11.2026 · Statussiden, ordre `2026-11-25-overhaling-1.md` del A: mappen `jkvmyomogbzimrw43iu9/` og dens Disallow-linje i `robots.txt` er fjernet på `statusside-af` (PR 5, flettes af vagten). `p7k2x9m4q8w3r5/` er ikke rørt. Afsnit 2, 3 nedenfor beskriver sitet før fjernelsen.
 
 ## Statussiden og repoets historik
 
-- Også når mappen er slettet, findes indholdet stadig i repoets historik, og repoet er offentligt. Historikken ryddes ikke.
+- Indholdet af den fjernede statusside findes stadig i repoets historik, fordi repoet er offentligt. Historikken er ikke ryddet.
 - Vurdering (kun den nuværende udgave; ældre udgaver er ikke gennemgået): ingen adgangsnøgler eller mailadresser set, men siden indeholder hashen af adgangskoden (kan gættes offline, så koden bør ikke bruges andre steder), et fornavn på en anden person og interne noter om byg og drift.
 
 ## 1. GitHub Pages
