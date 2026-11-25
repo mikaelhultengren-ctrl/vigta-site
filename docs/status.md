@@ -6,28 +6,28 @@ Grenen `pl` holder `docs/` og flettes aldrig til `main`.
 ## Log
 
 - 25.11.2026 · Første opgave: Pages-indstilling, de to skjulte mapper og oversigt over sitet. Ingen ændringer på sitet.
+- 25.11.2026 · Mikael gav direkte i chatten sessionen lov til at bruge GitHub-login til `gh` og push.
 
 ## 1. GitHub Pages
 
-| Punkt | Værdi | Kilde |
-|---|---|---|
-| Repo | `mikaelhultengren-ctrl/vigta-site`, offentligt, standardgren `main` | GitHub API (offentlig) |
-| Kilde | `main`, rodmappen (`.nojekyll` i roden, ingen workflows) | repoets indhold |
-| Domæne | `vigta.app` (filen `CNAME`) | repoets indhold |
-| HTTPS | `https://vigta.app` svarer 200 fra GitHub.com, `http://` sender 301 videre | svar fra domænet |
-| Has pages | ja | GitHub API |
+Aflæst med `gh api repos/mikaelhultengren-ctrl/vigta-site/pages` 25.11.2026.
 
-Ikke bekræftet med `gh`: `gh` måtte ikke køre fra sessionen (afvist af sikkerhedslaget), og Pages-endpointet kræver login.
-Kilde-gren/mappe og "Enforce HTTPS" er derfor udledt, ikke aflæst. Skal aflæses, når `gh` virker.
+| Punkt | Værdi |
+|---|---|
+| Repo | `mikaelhultengren-ctrl/vigta-site`, offentligt, standardgren `main` |
+| Kilde-gren og mappe | `main`, `/` |
+| Byggetype | `legacy` (fra gren, ingen workflows; `.nojekyll` i roden), status `built` |
+| Domæne | `vigta.app` (`CNAME`) |
+| HTTPS | gennemtvunget, certifikat godkendt, udløber 28.12.2026 |
 
-Bemærk også: repoet ligger ikke lokalt i `~/Udvikling/vigta-site`. Sessionen arbejder på en klon.
+Repoet ligger ikke lokalt i `~/Udvikling/vigta-site`. Sessionen arbejder på en midlertidig klon.
 
 ## 2. De to skjulte mapper (ikke rørt)
 
 | Mappe | Hvad | Sidst ændret | Andet |
 |---|---|---|---|
 | `jkvmyomogbzimrw43iu9/` | Statusside "Vigta · status" (byggestatus, kodefelt, mørk side) | 05.11.2026 | `noindex`, står i `robots.txt` som Disallow. Ikke opdateret i 20 dage. |
-| `p7k2x9m4q8w3r5/` | Klikbar prototype "hold på FAB, billede og forslag" som hjemmeskærms-webapp (manifest, ikon), ca. 1,1 MB i én HTML-fil | 23.11.2026 | `noindex`, står ikke i `robots.txt`. Grenen `claude/cc-prompt-fab-mockup-xo81av` (PR 1) hører efter navnet til samme prototype. |
+| `p7k2x9m4q8w3r5/` | Klikbar prototype "hold på FAB, billede og forslag" som hjemmeskærms-webapp (manifest, ikon), ca. 1,1 MB i én HTML-fil | 23.11.2026 | `noindex`, står ikke i `robots.txt`. Åben PR 1 (gren `claude/cc-prompt-fab-mockup-xo81av`) hører efter titlen til samme prototype. |
 
 Ingen sider på sitet linker til mapperne.
 
