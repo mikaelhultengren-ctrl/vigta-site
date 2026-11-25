@@ -8,3 +8,4 @@
 2026-11-25 12:15 | 2026-11-25-arbejdsregler.md | FEJL | arbejdsregler: git -c core.hooksPath=/dev/null -c core.fsmonitor=false -c: fatal: couldn't find remote ref pull/6/head
 2026-11-25 12:19 | 2026-11-25-overhaling-1.md | udført | del A: statusside-af: PR 5 flettet til main (287f824), Pages built, adressen giver 404 (flettet efter rettelse af vagten)
 2026-11-25 12:19 | 2026-11-25-arbejdsregler.md | udført | arbejdsregler: PR 6 https://github.com/mikaelhultengren-ctrl/vigta-site/pull/6; flettet til main (8dfe33f), Pages: built (afløser FEJL-linjen ovenfor)
+2026-11-25 12:19 | 2026-11-25-overhaling-1.md | delvist | del B: punkt 2-8 lavet på overhaling-1; MANGLER punkt 1: Figtree-filerne ligger ikke i fonts/ (kopiering afvist af tilladelsestilstanden; CSS er klar). Billeder og lister i docs/; se status.md; overhaling-1: PR 7 https://github.com/mikaelhultengren-ctrl/vigta-site/pull/7; ikke flettet (ordren er ikke meldt udført)

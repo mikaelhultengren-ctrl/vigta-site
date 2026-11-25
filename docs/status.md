@@ -10,6 +10,57 @@ Grenen `pl` holder `docs/` og flettes aldrig til `main`.
 
 - 25.11.2026 · Statussiden, ordre `2026-11-25-overhaling-1.md` del A: mappen `jkvmyomogbzimrw43iu9/` og dens Disallow-linje i `robots.txt` er fjernet på `statusside-af` (PR 5, flettes af vagten). `p7k2x9m4q8w3r5/` er ikke rørt. Afsnit 2, 3 nedenfor beskriver sitet før fjernelsen.
 
+- 25.11.2026 · Overhaling bølge 1 (del B) på `overhaling-1`: punkt 2-8 lavet, punkt 1 (skrift) mangler skriftfilerne. Se afsnittet nedenfor. Afsnit 3 længere nede beskriver sitet før overhalingen.
+
+## Overhaling bølge 1 (25.11.2026)
+
+### Mangler før den kan gå live
+
+- **Skriftfilerne.** Læg `Figtree-Regular.ttf`, `-Medium.ttf`, `-SemiBold.ttf`, `-Bold.ttf`, `-ExtraBold.ttf` og `OFL.txt` fra vigta-repoets `src/fonts/` i sitets `fonts/`. Sessionens tilladelser afviste kopieringen. `stil.css` er klar til filerne; indtil da bruges Schibsted Grotesk som reserve, og browseren får 404 på de fem filer. Japansk er uændret.
+
+### Lanceringsudgaven: det der mangler (udfyldes ét sted, `lancering.js`)
+
+- `appStore`: App Store-adressen (https).
+- `googlePlay`: Google Play-adressen (https).
+- `webLogin`: adressen til web-appens login (https). Siden `web/` linker til login; der er ingen loginformular på selve siden.
+- Når bare én butiksadresse er udfyldt, vises butiksknapperne, og "Kommer til iPhone og Android" skjules. Udfyld derfor begge samtidig.
+- Knapperne er tekstknapper. Apples og Googles officielle mærker er ikke lagt ind.
+
+### Skærmbilleder: det PL skal skaffe
+
+- Fem skærme: opgavelisten med kategorier, vurderingen med de tre skydere, kalenderen, Ugeplan og noter.
+- Lys og mørk, dansk og engelsk (de otte øvrige sprog viser de engelske), 20 filer i alt.
+- PNG, 780 × 1688 px (390 × 844 punkter i 2x), kun opdigtede data uden rigtige navne.
+- Navne: `skaerme/<da|en>/<opgaver|vurdering|kalender|ugeplan|noter>-<lys|moerk>.png`. Sæt derefter `skaermbilleder: true` i `lancering.js`.
+
+### Vilkår og privatliv: steder der ikke længere passer (ingen tekst er ændret)
+
+| Hvor (dansk udgave) | Teksten siger | Appen |
+|---|---|---|
+| Privatliv, indledningen | Sorterer efter værdi og indsats | Tre skydere: Betydning, Indsats, Konsekvens |
+| Privatliv 4.2, 4.4, 5.3 og tabellen i 9 | "stjerner" | Vurdering sker med skydere. Tjek, hvad der faktisk gemmes |
+| Privatliv 4.7 | Kun læseadgang til Google og Outlook; Vigta ændrer aldrig noget i kalenderen | Appens tekster viser, at aftaler kan opdateres i og sendes til Outlook. Skal afklares |
+| Vilkår 8 | Plus omfatter bl.a. ubegrænset Indtal og vurderingsskabeloner | Appens Plus-oversigt nævner På tværs, deling med flere end to og 2 GB |
+
+Gennemgangen bygger på appens tekster, ikke på en afprøvning i appen.
+
+### Links i privatlivspolitikken
+
+Optalt: da 27, en 27, sv 28, ja 26, de, es, fi, fr, it og nb 29. Ordren regnede engelsk blandt dem med 29.
+
+- Afsnit 10, adressen til slet konto: klikbar i de, es, fi, fr, it, nb, ja. Ren tekst i da, en, sv.
+- Sidst i politikken, adressen til politikken selv: klikbar i de, es, fi, fr, it, nb, sv, ja. Ren tekst i da, en.
+- Japansk: de to mailadresser i afsnit 1's sidste stykke og support-adressen i afsnit 10 er ren tekst.
+
+### Til efterretning
+
+- Hjælpesiderne er skrevet efter appens tekster og FACIT, ikke afprøvet i build 591. De ni oversættelser er sessionens egne sætninger med appens ord for skydere, kategorier og faner. Japansk er ikke indfødt korrekturlæst.
+- Kategorinavnene på forsiden følger nu appen (bl.a. "Senere" i stedet for "Parkér").
+- Forsidens overskrift for På tværs afviger fra appens ord på tysk og svensk (hjælpesiden bruger appens).
+- Fyldte knapper bruger fortsat `#0A6E56` og ikke `#0D9373`, så hvid tekst har nok kontrast. Den mørkeblå top er beholdt.
+- Linket til kalenderdata i den mørke top er gjort læsbart.
+- I appens sprogfiler (ikke sitet): visningen "Liste" er uoversat i flere sprog, og noten om venstrehåndsskydere står på dansk i alle ti.
+
 ## Statussiden og repoets historik
 
 - Indholdet af den fjernede statusside findes stadig i repoets historik, fordi repoet er offentligt. Historikken er ikke ryddet.
