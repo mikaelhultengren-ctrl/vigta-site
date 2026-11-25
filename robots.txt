@@ -2,5 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /test/
 Disallow: /web-test/
-Disallow: /jkvmyomogbzimrw43iu9/
 Sitemap: https://vigta.app/sitemap.xml
