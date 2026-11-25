@@ -1,1 +1,2 @@
 2026-11-25 11:57 | 2026-11-25-proeveordre-vagt.md | udført | prøveordre modtaget
+2026-11-25 12:06 | 2026-11-25-proeve-1.md | udført | én tom linje sidst i robots.txt; billede proeve af /da/ set efter, siden vises; set undervejs (ikke rettet): kalenderdata-linket i den mørke top på /da/ har svag kontrast; proeve-robots-til: PR 2 https://github.com/mikaelhultengren-ctrl/vigta-site/pull/2; flettet til main (76b73a2), Pages: built
