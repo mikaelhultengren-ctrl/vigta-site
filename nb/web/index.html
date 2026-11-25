@@ -36,7 +36,12 @@
     <div class="side smal">
       <h1>Vigta på nett</h1>
       <p class="meta">Listene dine på datamaskinen, med samme konto som på telefonen.</p>
-      <div class="boks">
+      <div class="boks" data-efter="web" hidden>
+        <p>Logg på med samme konto som på telefonen, så er listene dine med.</p>
+        <p><a class="knap knap-fyldt" data-lancering="webLogin" href="#" hidden>Logg på</a></p>
+      </div>
+      <div class="butikker" data-efter="butik" hidden><a class="knap knap-fyldt" data-lancering="appStore" href="#" hidden>App Store</a><a class="knap knap-fyldt" data-lancering="googlePlay" href="#" hidden>Google Play</a></div>
+      <div class="boks" data-foer="web">
         <p><strong>Nettappen er ikke åpen ennå.</strong></p>
         <p>Den åpner samtidig med appen for iPhone og Android. Da logger du inn her med den samme kontoen, og alt du har på telefonen, er med.</p>
       </div>
@@ -46,5 +51,6 @@
   <footer class="bund">
     <div class="bredde"><a href="/nb/privacy/">Personvern</a><a href="/nb/terms/">Vilkår</a><a href="/nb/delete-account/">Slett konto</a><a href="/nb/support/">Hjelp</a><span class="hoejre">Vigta utvikles av Exekio · CVR 46387376 (Danmark)</span></div>
   </footer>
+  <script src="/lancering.js"></script>
 </body>
 </html>
