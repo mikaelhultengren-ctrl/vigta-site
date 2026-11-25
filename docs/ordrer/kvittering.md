@@ -6,3 +6,5 @@
 2026-11-25 12:12 | 2026-11-25-overhaling-1.md | udført | del A: mappen jkvmyomogbzimrw43iu9/ og dens Disallow-linje i robots.txt er fjernet (kun de to ændringer mod main); p7k2x9m4q8w3r5/ ikke rørt; status.md har note om historik og følsomhed; del B er ikke omfattet af denne kvittering; statusside-af: PR 5 https://github.com/mikaelhultengren-ctrl/vigta-site/pull/5; ikke flettet: PR'en er ændret efter sessionens push
 2026-11-25 12:14 | 2026-11-25-arbejdsregler.md | udført | CLAUDE.md oprettet i roden med ordrens indhold; Disallow: /CLAUDE.md tilføjet i robots.txt; intet andet ændret
 2026-11-25 12:15 | 2026-11-25-arbejdsregler.md | FEJL | arbejdsregler: git -c core.hooksPath=/dev/null -c core.fsmonitor=false -c: fatal: couldn't find remote ref pull/6/head
+2026-11-25 12:19 | 2026-11-25-overhaling-1.md | udført | del A: statusside-af: PR 5 flettet til main (287f824), Pages built, adressen giver 404 (flettet efter rettelse af vagten)
+2026-11-25 12:19 | 2026-11-25-arbejdsregler.md | udført | arbejdsregler: PR 6 https://github.com/mikaelhultengren-ctrl/vigta-site/pull/6; flettet til main (8dfe33f), Pages: built (afløser FEJL-linjen ovenfor)
