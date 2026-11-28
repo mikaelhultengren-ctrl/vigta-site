@@ -36,7 +36,12 @@
     <div class="side smal">
       <h1>Vigta verkossa</h1>
       <p class="meta">Listasi tietokoneella, samalla tilillä kuin puhelimessa.</p>
-      <div class="boks">
+      <div class="boks" data-efter="web" hidden>
+        <p>Kirjaudu samalla tilillä kuin puhelimessa, niin listasi ovat mukana.</p>
+        <p><a class="knap knap-fyldt" data-lancering="webLogin" href="#" hidden>Kirjaudu</a></p>
+      </div>
+      <div class="butikker" data-efter="butik" hidden><a class="knap knap-fyldt" data-lancering="appStore" href="#" hidden>App Store</a><a class="knap knap-fyldt" data-lancering="googlePlay" href="#" hidden>Google Play</a></div>
+      <div class="boks" data-foer="web">
         <p><strong>Verkkosovellus ei ole vielä auki.</strong></p>
         <p>Se avautuu samaan aikaan kuin iPhone- ja Android-sovellus. Silloin kirjaudut tänne samalla tilillä, ja kaikki puhelimessasi oleva on mukana.</p>
       </div>
@@ -46,5 +51,6 @@
   <footer class="bund">
     <div class="bredde"><a href="/fi/privacy/">Tietosuoja</a><a href="/fi/terms/">Käyttöehdot</a><a href="/fi/delete-account/">Poista tili</a><a href="/fi/support/">Ohje</a><span class="hoejre">Vigtan kehittää Exekio · CVR 46387376 (Tanska)</span></div>
   </footer>
+  <script src="/lancering.js"></script>
 </body>
 </html>

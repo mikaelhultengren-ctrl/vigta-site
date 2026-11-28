@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vigta - Det viktiga först</title>
-  <meta name="description" content="Det viktiga först. Vigta är en uppgiftsapp som prioriterar efter värde och insats. För iPhone, Android och webben.">
+  <meta name="description" content="Det viktiga först. Vigta är en uppgiftsapp som prioriterar efter värde, insats och konsekvens. För iPhone, Android och webben.">
   <link rel="canonical" href="https://vigta.app/sv/">
   <link rel="alternate" hreflang="da" href="https://vigta.app/da/">
   <link rel="alternate" hreflang="en" href="https://vigta.app/en/">
@@ -37,13 +37,14 @@
       <div class="bredde">
         <div>
           <h1>Det viktiga först.</h1>
-          <p>Vigta är en app för dina uppgifter och att göra-listor - på kontoret, i verkstaden, i driften och hemma. Du bedömer varje uppgift efter värde och insats, och Vigta visar vad du ska ta itu med.</p>
+          <p>Vigta är en app för dina uppgifter och att göra-listor - på kontoret, i verkstaden, i driften och hemma. Du bedömer varje uppgift med tre reglage: Värde, Insats och Konsekvens. Sedan visar Vigta vad du ska ta itu med.</p>
           <p class="kalenderlinje">Anslut Google Kalender eller Outlook och se dina händelser bredvid dina uppgifter. <a href="/sv/privacy/#kalender">Så använder vi dina kalenderdata</a>.</p>
           <div class="knapper">
             <a class="knap knap-fyldt" href="/sv/support/">Så fungerar Vigta</a>
             <a class="knap knap-kant" href="/sv/web/">Vigta på webben</a>
           </div>
-          <span class="snart">Kommer till iPhone och Android. Webbappen öppnar samtidigt.</span>
+          <div class="butikker" data-efter="butik" hidden><a class="knap knap-fyldt" data-lancering="appStore" href="#" hidden>App Store</a><a class="knap knap-kant" data-lancering="googlePlay" href="#" hidden>Google Play</a></div>
+          <span class="snart" data-foer="butik">Kommer till iPhone och Android. Webbappen öppnar samtidigt.</span>
         </div>
         <img src="/vigta-ikon-512.png" alt="Vigtas ikon: en stjärna med en bock" width="280" height="280">
       </div>
@@ -51,15 +52,27 @@
     <section class="sektion">
       <div class="bredde">
         <h2>Fyra kategorier. Inga gissningar.</h2>
-        <p class="ingress">Prioriteringen bygger på värde och insats - inte på det som låter högst. Varje uppgift hamnar i en av fyra kategorier, och regeln bakom kan förklaras rad för rad.</p>
-        <div class="gitter gitter-4"><div class="kort"><h3><span class="prik" style="background:#E5484D" aria-hidden="true"></span>Kritisk</h3><p>Högt värde, och det behöver göras nu.</p></div><div class="kort"><h3><span class="prik" style="background:#0D9373" aria-hidden="true"></span>Snabb vinst</h3><p>Högt värde för liten insats. Ta dem först.</p></div><div class="kort"><h3><span class="prik" style="background:#5B7CFA" aria-hidden="true"></span>Planera</h3><p>Högt värde, men kräver tid. Avsätt en dag.</p></div><div class="kort"><h3><span class="prik" style="background:#9A9AA0" aria-hidden="true"></span>Parkera</h3><p>Lågt värde just nu. Den finns kvar om det ändras.</p></div></div>
+        <p class="ingress">Prioriteringen bygger på värde, insats och konsekvensen av att vänta - inte på det som låter högst. Varje uppgift hamnar i en av fyra kategorier, och regeln bakom kan förklaras rad för rad.</p>
+        <div class="gitter gitter-4"><div class="kort"><h3><span class="prik prik-kritisk" aria-hidden="true"></span>Kritisk</h3><p>Högt värde, och det behöver göras nu.</p></div><div class="kort"><h3><span class="prik prik-quickwin" aria-hidden="true"></span>Snabbvinst</h3><p>Högt värde för liten insats. Ta dem först.</p></div><div class="kort"><h3><span class="prik prik-planlaeg" aria-hidden="true"></span>Planera</h3><p>Högt värde, men kräver tid. Avsätt en dag.</p></div><div class="kort"><h3><span class="prik prik-senere" aria-hidden="true"></span>Senare</h3><p>Lågt värde just nu. Den finns kvar om det ändras.</p></div></div>
       </div>
     </section>
     <section class="sektion sektion-graa">
       <div class="bredde">
         <h2>Ensam, tillsammans eller mellan team</h2>
         <p class="ingress">Tre sätt att prioritera, i samma app.</p>
-        <div class="gitter"><div class="kort"><h3>Mina</h3><p>Dina egna uppgifter, bedömda med stjärnor för värde och insats. Vigta sorterar dem så att det viktigaste står överst.</p></div><div class="kort"><h3>Delad</h3><p>Dela en lista med familjen, laget eller kollegorna. Ni ser samma uppgifter i samma ordning.</p></div><div class="kort"><h3>Mellan team</h3><p>Flera bedömer samma uppgift var för sig. Sedan ser ni den samlade bedömningen och kan komma överens.</p></div></div>
+        <div class="gitter"><div class="kort"><h3>Mina</h3><p>Dina egna uppgifter, bedömda med tre reglage: Värde, Insats och Konsekvens. Vigta sorterar dem så att det viktigaste står överst.</p></div><div class="kort"><h3>Delad</h3><p>Dela en lista med familjen, laget eller kollegorna. Ni ser samma uppgifter i samma ordning.</p></div><div class="kort"><h3>Mellan team</h3><p>Flera bedömer samma uppgift var för sig. Sedan ser ni den samlade bedömningen och kan komma överens.</p></div></div>
+      </div>
+    </section>
+    <section class="sektion" data-efter="skaerme" hidden>
+      <div class="bredde">
+        <h2>Så här ser det ut</h2>
+        <div class="skaerme">
+          <figure><picture><source srcset="/skaerme/en/opgaver-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/opgaver-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Uppgifter</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/vurdering-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/vurdering-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Bedöm uppgiften</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/kalender-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/kalender-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Kalender</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/ugeplan-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/ugeplan-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Veckoplan</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/noter-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/noter-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Anteckningar</figcaption></figure>
+        </div>
       </div>
     </section>
     <section class="sektion">
@@ -72,5 +85,6 @@
   <footer class="bund">
     <div class="bredde"><a href="/sv/privacy/">Integritet</a><a href="/sv/terms/">Villkor</a><a href="/sv/delete-account/">Radera konto</a><a href="/sv/support/">Hjälp</a><span class="hoejre">Vigta utvecklas av Exekio · CVR 46387376 (Danmark)</span></div>
   </footer>
+  <script src="/lancering.js"></script>
 </body>
 </html>

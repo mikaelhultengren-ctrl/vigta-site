@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vigta - Tärkein ensin</title>
-  <meta name="description" content="Tärkein ensin. Vigta on tehtäväsovellus, joka priorisoi arvon ja työmäärän mukaan. iPhonelle, Androidille ja verkkoon.">
+  <meta name="description" content="Tärkein ensin. Vigta on tehtäväsovellus, joka priorisoi arvon, työmäärän ja seurauksen mukaan. iPhonelle, Androidille ja verkkoon.">
   <link rel="canonical" href="https://vigta.app/fi/">
   <link rel="alternate" hreflang="da" href="https://vigta.app/da/">
   <link rel="alternate" hreflang="en" href="https://vigta.app/en/">
@@ -37,13 +37,14 @@
       <div class="bredde">
         <div>
           <h1>Tärkein ensin.</h1>
-          <p>Vigta on yksi sovellus tehtävillesi ja askareillesi - toimistolla, verstaalla, tuotannossa ja kotona. Arvioit jokaisen tehtävän arvon ja työmäärän, ja Vigta näyttää, mihin kannattaa tarttua.</p>
+          <p>Vigta on yksi sovellus tehtävillesi ja askareillesi - toimistolla, verstaalla, tuotannossa ja kotona. Arvioit jokaisen tehtävän kolmella liukusäätimellä: Arvo, Työmäärä ja Seuraus. Sitten Vigta näyttää, mihin kannattaa tarttua.</p>
           <p class="kalenderlinje">Yhdistä Google-kalenteri tai Outlook ja näe tapahtumasi tehtäviesi rinnalla. <a href="/fi/privacy/#kalender">Näin käytämme kalenteritietojasi</a>.</p>
           <div class="knapper">
             <a class="knap knap-fyldt" href="/fi/support/">Näin Vigta toimii</a>
             <a class="knap knap-kant" href="/fi/web/">Vigta verkossa</a>
           </div>
-          <span class="snart">Tulossa iPhonelle ja Androidille. Verkkosovellus avautuu samaan aikaan.</span>
+          <div class="butikker" data-efter="butik" hidden><a class="knap knap-fyldt" data-lancering="appStore" href="#" hidden>App Store</a><a class="knap knap-kant" data-lancering="googlePlay" href="#" hidden>Google Play</a></div>
+          <span class="snart" data-foer="butik">Tulossa iPhonelle ja Androidille. Verkkosovellus avautuu samaan aikaan.</span>
         </div>
         <img src="/vigta-ikon-512.png" alt="Vigtan kuvake: tähti ja valintamerkki" width="280" height="280">
       </div>
@@ -51,15 +52,27 @@
     <section class="sektion">
       <div class="bredde">
         <h2>Neljä luokkaa. Ei arvailua.</h2>
-        <p class="ingress">Priorisointi perustuu arvoon ja työmäärään - ei siihen, kuka huutaa kovimmin. Jokainen tehtävä päätyy yhteen neljästä luokasta, ja sen taustalla oleva sääntö voidaan selittää rivi riviltä.</p>
-        <div class="gitter gitter-4"><div class="kort"><h3><span class="prik" style="background:#E5484D" aria-hidden="true"></span>Kriittinen</h3><p>Suuri arvo, ja se on tehtävä nyt.</p></div><div class="kort"><h3><span class="prik" style="background:#0D9373" aria-hidden="true"></span>Pikavoitto</h3><p>Suuri arvo pienellä työllä. Tee nämä ensin.</p></div><div class="kort"><h3><span class="prik" style="background:#5B7CFA" aria-hidden="true"></span>Suunnittele</h3><p>Suuri arvo, mutta vie aikaa. Varaa sille päivä.</p></div><div class="kort"><h3><span class="prik" style="background:#9A9AA0" aria-hidden="true"></span>Pysäköi</h3><p>Pieni arvo juuri nyt. Se odottaa valmiina, jos tilanne muuttuu.</p></div></div>
+        <p class="ingress">Priorisointi perustuu arvoon, työmäärään ja odottamisen seuraukseen - ei siihen, kuka huutaa kovimmin. Jokainen tehtävä päätyy yhteen neljästä luokasta, ja sen taustalla oleva sääntö voidaan selittää rivi riviltä.</p>
+        <div class="gitter gitter-4"><div class="kort"><h3><span class="prik prik-kritisk" aria-hidden="true"></span>Kriittinen</h3><p>Suuri arvo, ja se on tehtävä nyt.</p></div><div class="kort"><h3><span class="prik prik-quickwin" aria-hidden="true"></span>Pikavoitto</h3><p>Suuri arvo pienellä työllä. Tee nämä ensin.</p></div><div class="kort"><h3><span class="prik prik-planlaeg" aria-hidden="true"></span>Ajoita</h3><p>Suuri arvo, mutta vie aikaa. Varaa sille päivä.</p></div><div class="kort"><h3><span class="prik prik-senere" aria-hidden="true"></span>Myöhemmin</h3><p>Pieni arvo juuri nyt. Se odottaa valmiina, jos tilanne muuttuu.</p></div></div>
       </div>
     </section>
     <section class="sektion sektion-graa">
       <div class="bredde">
         <h2>Yksin, yhdessä tai tiimien yli</h2>
         <p class="ingress">Kolme tapaa priorisoida, samassa sovelluksessa.</p>
-        <div class="gitter"><div class="kort"><h3>Omat</h3><p>Omat tehtäväsi, arvioitu tähdillä arvon ja työmäärän mukaan. Vigta järjestää ne niin, että tärkein on ylimpänä.</p></div><div class="kort"><h3>Jaettu</h3><p>Jaa lista perheen, porukan tai työkavereiden kanssa. Kaikki näkevät samat tehtävät samassa järjestyksessä.</p></div><div class="kort"><h3>Tiimien yli</h3><p>Useampi arvioi saman tehtävän kukin erikseen. Sen jälkeen näette yhteisen arvion ja voitte sopia asiasta.</p></div></div>
+        <div class="gitter"><div class="kort"><h3>Omat</h3><p>Omat tehtäväsi, arvioitu kolmella liukusäätimellä: Arvo, Työmäärä ja Seuraus. Vigta järjestää ne niin, että tärkein on ylimpänä.</p></div><div class="kort"><h3>Jaettu</h3><p>Jaa lista perheen, porukan tai työkavereiden kanssa. Kaikki näkevät samat tehtävät samassa järjestyksessä.</p></div><div class="kort"><h3>Tiimien yli</h3><p>Useampi arvioi saman tehtävän kukin erikseen. Sen jälkeen näette yhteisen arvion ja voitte sopia asiasta.</p></div></div>
+      </div>
+    </section>
+    <section class="sektion" data-efter="skaerme" hidden>
+      <div class="bredde">
+        <h2>Tältä se näyttää</h2>
+        <div class="skaerme">
+          <figure><picture><source srcset="/skaerme/en/opgaver-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/opgaver-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Tehtävät</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/vurdering-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/vurdering-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Arvioi tehtävä</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/kalender-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/kalender-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Kalenteri</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/ugeplan-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/ugeplan-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Viikkosuunnitelma</figcaption></figure>
+          <figure><picture><source srcset="/skaerme/en/noter-moerk.png" media="(prefers-color-scheme: dark)"><img src="/skaerme/en/noter-lys.png" alt="" width="780" height="1688" loading="lazy"></picture><figcaption>Muistiinpanot</figcaption></figure>
+        </div>
       </div>
     </section>
     <section class="sektion">
@@ -72,5 +85,6 @@
   <footer class="bund">
     <div class="bredde"><a href="/fi/privacy/">Tietosuoja</a><a href="/fi/terms/">Käyttöehdot</a><a href="/fi/delete-account/">Poista tili</a><a href="/fi/support/">Ohje</a><span class="hoejre">Vigtan kehittää Exekio · CVR 46387376 (Tanska)</span></div>
   </footer>
+  <script src="/lancering.js"></script>
 </body>
 </html>

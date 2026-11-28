@@ -37,7 +37,12 @@
     <div class="side smal">
       <h1>Web版Vigta</h1>
       <p class="meta">スマートフォンと同じアカウントで、パソコンからリストを使えます。</p>
-      <div class="boks">
+      <div class="boks" data-efter="web" hidden>
+        <p>スマートフォンと同じアカウントでサインインすると、リストが表示されます。</p>
+        <p><a class="knap knap-fyldt" data-lancering="webLogin" href="#" hidden>サインイン</a></p>
+      </div>
+      <div class="butikker" data-efter="butik" hidden><a class="knap knap-fyldt" data-lancering="appStore" href="#" hidden>App Store</a><a class="knap knap-fyldt" data-lancering="googlePlay" href="#" hidden>Google Play</a></div>
+      <div class="boks" data-foer="web">
         <p><strong>Webアプリはまだ公開されていません。</strong></p>
         <p>iPhoneとAndroidのアプリと同時に公開します。公開後は、ここから同じアカウントでログインでき、スマートフォンの内容がすべて表示されます。</p>
       </div>
@@ -47,5 +52,6 @@
   <footer class="bund">
     <div class="bredde"><a href="/ja/privacy/">プライバシー</a><a href="/ja/terms/">利用規約</a><a href="/ja/delete-account/">アカウントを削除</a><a href="/ja/support/">ヘルプ</a><span class="hoejre">Vigtaの開発元: Exekio · CVR 46387376（デンマーク）</span></div>
   </footer>
+  <script src="/lancering.js"></script>
 </body>
 </html>

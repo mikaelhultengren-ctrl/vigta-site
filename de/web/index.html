@@ -36,7 +36,12 @@
     <div class="side smal">
       <h1>Vigta im Web</h1>
       <p class="meta">Deine Listen am Computer, mit demselben Konto wie auf dem Telefon.</p>
-      <div class="boks">
+      <div class="boks" data-efter="web" hidden>
+        <p>Melde dich mit demselben Konto wie auf dem Telefon an, dann sind deine Listen da.</p>
+        <p><a class="knap knap-fyldt" data-lancering="webLogin" href="#" hidden>Anmelden</a></p>
+      </div>
+      <div class="butikker" data-efter="butik" hidden><a class="knap knap-fyldt" data-lancering="appStore" href="#" hidden>App Store</a><a class="knap knap-fyldt" data-lancering="googlePlay" href="#" hidden>Google Play</a></div>
+      <div class="boks" data-foer="web">
         <p><strong>Die Web-App ist noch nicht verfügbar.</strong></p>
         <p>Sie startet zur gleichen Zeit wie die App für iPhone und Android. Dann meldest du dich hier mit demselben Konto an, und alles, was du auf dem Telefon hast, ist da.</p>
       </div>
@@ -46,5 +51,6 @@
   <footer class="bund">
     <div class="bredde"><a href="/de/privacy/">Datenschutz</a><a href="/de/terms/">Nutzungsbedingungen</a><a href="/de/delete-account/">Konto löschen</a><a href="/de/support/">Hilfe</a><span class="hoejre">Vigta wird von Exekio entwickelt · CVR 46387376 (Dänemark)</span></div>
   </footer>
+  <script src="/lancering.js"></script>
 </body>
 </html>
